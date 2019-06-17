@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Models;
-use App\User;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Comment;
+use App\User;
 
-class Message extends Model
+class Post extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,14 +14,13 @@ class Message extends Model
      * @var array
      */
     protected $fillable = [
-        'sender',
-        'receiver',
-        'folder',
+        'project_id'
+        'post_date',
+        'references',
         'title',
-        'message',
-        'priority',
-        'attachment',
-        'status',
+        'description',
+        'uploaded_by',
+        'more',
     ];
 
     /**
@@ -28,7 +28,17 @@ class Message extends Model
      *
      * @var array
      */
-    protected $table = 'messages';
+    protected $table = 'posts';
+
+    /**
+     * The relationship method for comments.
+     *
+     * as comments.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
     
     /**
      * Belonds to relationship connects both 

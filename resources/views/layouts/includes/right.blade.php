@@ -25,7 +25,7 @@
       <div class="user col-md-12">
        <ul class="nav nav-list">
         <li class="online">
-          <img src="asset/img/avatar.jpg" alt="user name">
+          <img src="{{ asset('files/profile/images/'.Auth::user()->profile_image) }}" alt="user name">
           <div class="name">
             <h5><b>Bill Gates</b></h5>
             <p>Hi there.?</p>
@@ -36,7 +36,7 @@
           <div class="dot"></div>
         </li>
         <li class="away">
-          <img src="asset/img/avatar.jpg" alt="user name">
+          <img src="{{ asset('files/profile/images/'.Auth::user()->profile_image) }}" alt="user name">
           <div class="name">
             <h5><b>Bill Gates</b></h5>
             <p>Hi there.?</p>
@@ -47,86 +47,10 @@
           <div class="dot"></div>
         </li>
         <li class="offline">
-          <img src="asset/img/avatar.jpg" alt="user name">
+          <img src="{{ asset('files/profile/images/'.Auth::user()->profile_image) }}" alt="user name">
           <div class="name">
             <h5><b>Bill Gates</b></h5>
             <p>Hi there.?</p>
-          </div>
-          <div class="dot"></div>
-        </li>
-        <li class="offline">
-          <img src="asset/img/avatar.jpg" alt="user name">
-          <div class="name">
-            <h5><b>Bill Gates</b></h5>
-            <p>Hi there.?</p>
-          </div>
-          <div class="dot"></div>
-        </li>
-        <li class="online">
-          <img src="asset/img/avatar.jpg" alt="user name">
-          <div class="name">
-            <h5><b>Bill Gates</b></h5>
-            <p>Hi there.?</p>
-          </div>
-          <div class="gadget">
-            <span class="fa  fa-mobile-phone fa-2x"></span> 
-          </div>
-          <div class="dot"></div>
-        </li>
-        <li class="offline">
-          <img src="asset/img/avatar.jpg" alt="user name">
-          <div class="name">
-            <h5><b>Bill Gates</b></h5>
-            <p>Hi there.?</p>
-          </div>
-          <div class="dot"></div>
-        </li>
-        <li class="online">
-          <img src="asset/img/avatar.jpg" alt="user name">
-          <div class="name">
-            <h5><b>Bill Gates</b></h5>
-            <p>Hi there.?</p>
-          </div>
-          <div class="gadget">
-            <span class="fa  fa-mobile-phone fa-2x"></span> 
-          </div>
-          <div class="dot"></div>
-        </li>
-        <li class="offline">
-          <img src="asset/img/avatar.jpg" alt="user name">
-          <div class="name">
-            <h5><b>Bill Gates</b></h5>
-            <p>Hi there.?</p>
-          </div>
-          <div class="dot"></div>
-        </li>
-        <li class="offline">
-          <img src="asset/img/avatar.jpg" alt="user name">
-          <div class="name">
-            <h5><b>Bill Gates</b></h5>
-            <p>Hi there.?</p>
-          </div>
-          <div class="dot"></div>
-        </li>
-        <li class="online">
-          <img src="asset/img/avatar.jpg" alt="user name">
-          <div class="name">
-            <h5><b>Bill Gates</b></h5>
-            <p>Hi there.?</p>
-          </div>
-          <div class="gadget">
-            <span class="fa  fa-mobile-phone fa-2x"></span> 
-          </div>
-          <div class="dot"></div>
-        </li>
-        <li class="online">
-          <img src="asset/img/avatar.jpg" alt="user name">
-          <div class="name">
-            <h5><b>Bill Gates</b></h5>
-            <p>Hi there.?</p>
-          </div>
-          <div class="gadget">
-            <span class="fa  fa-mobile-phone fa-2x"></span> 
           </div>
           <div class="dot"></div>
         </li>
@@ -251,42 +175,6 @@
                         </a>
                       </li>
                       <li class="offline">
-                        <a href="" data-toggle="tooltip" data-placement="left" title="Akihiko avaron">
-                          <img src="asset/img/avatar.jpg" alt="user name">
-                          <div class="dot"></div>
-                        </a>
-                      </li>
-                      <li class="away">
-                        <a href="" data-toggle="tooltip" data-placement="left" title="Akihiko avaron">
-                          <img src="asset/img/avatar.jpg" alt="user name">
-                          <div class="dot"></div>
-                        </a>
-                      </li>
-                      <li class="offline">
-                        <a href="" data-toggle="tooltip" data-placement="left" title="Akihiko avaron">
-                          <img src="asset/img/avatar.jpg" alt="user name">
-                          <div class="dot"></div>
-                        </a>
-                      </li>
-                      <li class="offline">
-                        <a href="" data-toggle="tooltip" data-placement="left" title="Akihiko avaron">
-                          <img src="asset/img/avatar.jpg" alt="user name">
-                          <div class="dot"></div>
-                        </a>
-                      </li>
-                      <li class="away">
-                        <a href="" data-toggle="tooltip" data-placement="left" title="Akihiko avaron">
-                          <img src="asset/img/avatar.jpg" alt="user name">
-                          <div class="dot"></div>
-                        </a>
-                      </li>
-                      <li class="online">
-                        <a href="" data-toggle="tooltip" data-placement="left" title="Akihiko avaron">
-                          <img src="asset/img/avatar.jpg" alt="user name">
-                          <div class="dot"></div>
-                        </a>
-                      </li>
-                      <li class="away">
                         <a href="" data-toggle="tooltip" data-placement="left" title="Akihiko avaron">
                           <img src="asset/img/avatar.jpg" alt="user name">
                           <div class="dot"></div>

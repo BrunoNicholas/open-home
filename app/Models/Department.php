@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Models;
-use App\User;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
-class Message extends Model
+class Department extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,13 +13,10 @@ class Message extends Model
      * @var array
      */
     protected $fillable = [
-        'sender',
-        'receiver',
-        'folder',
-        'title',
-        'message',
-        'priority',
-        'attachment',
+        'name',
+        'created_by',
+        'parent_department',
+        'description',
         'status',
     ];
 
@@ -28,11 +25,11 @@ class Message extends Model
      *
      * @var array
      */
-    protected $table = 'messages';
+    protected $table = 'departments';
     
     /**
      * Belonds to relationship connects both 
-     * the user table and the books table
+     * the user table and the departments table
      *
      */
     public function users()

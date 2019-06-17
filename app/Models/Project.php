@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Models;
-use App\User;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use App\Models\Post;
 
-class Message extends Model
+class Project extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -13,13 +14,14 @@ class Message extends Model
      * @var array
      */
     protected $fillable = [
-        'sender',
-        'receiver',
-        'folder',
-        'title',
-        'message',
-        'priority',
-        'attachment',
+        'created_by',
+        'department',
+        'name',
+        'description_image',
+        'description',
+        'estimated_period',
+        'start_date',
+        'end_date',
         'status',
     ];
 
@@ -28,7 +30,7 @@ class Message extends Model
      *
      * @var array
      */
-    protected $table = 'messages';
+    protected $table = 'projects';
     
     /**
      * Belonds to relationship connects both 
@@ -38,5 +40,15 @@ class Message extends Model
     public function users()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * The relationship method for posts.
+     *
+     * as posts.
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
     }
 }
