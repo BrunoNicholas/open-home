@@ -11,8 +11,8 @@
             <div class="d-flex no-block justify-content-end align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}"> <i class="fa fa-home"></i> Home</a></li>
-                        <li class="breadcrumb-item active" aria-current="page"> Dashboard </li>
+                        <!-- <li class="breadcrumb-item"><a href="{{ route('home') }}"> Home</a></li> -->
+                        <li class="breadcrumb-item active" aria-current="page"> <i class="fa fa-home"></i> Home </li>
                     </ol>
                     <p class="animated fadeInDown"><span class="fa fa-user"></span> Logged in as <a href="{{ route('profile') }}">{{ Auth::user()->name }}</a> | {{ App\Models\Role::where('name',Auth::user()->role)->get()->first()->display_name }} </p>
                 </nav>
@@ -27,7 +27,7 @@
             <div class="col-md-12">
                 <div class="panel box-v4">
                     <div class="panel-heading bg-white border-none">
-                      <h4><span class="icon-notebook icons"></span> Agenda</h4>
+                      <h4><span class="icon-notebook icons"></span> Menu </h4>
                     </div>
                     <div class="panel-body padding-0">
                         <div class="col-md-12 col-xs-12 col-md-12 padding-0 box-v4-alert">

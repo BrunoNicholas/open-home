@@ -30,13 +30,13 @@
            <span class="user-name" data-toggle="dropdown" style="font-size: 25px; vertical-align: bottom;"> {{ Auth::user()->name }}</span>
            <ul class="dropdown-menu user-dropdown">
              <li><a href="{{ route('profile') }}"><span class="fa fa-user text-primary" style="font-size: 20px;"></span> My Profile</a></li>
-             <li><a href="{{ route('messages.index') }}"><span class="fa fa-envelope text-success" style="font-size: 20px;"></span> Messaging </a></li>
+             <li><a href="{{ route('messages.index','inbox') }}"><span class="fa fa-envelope text-success" style="font-size: 20px;"></span> Messaging </a></li>
              <li role="separator" class="divider"></li>
              <li class="more" style="min-width: 200px; height: 50px;">
               <ul>
                 <div class="row">
                   <div class="col-md-6">
-                    <li><a href=""><span class="fa fa-cogs prof-icons" style="font-size: 25px;"></span></a></li>
+                    <li><a href="{{ route('settings') }}"><span class="fa fa-cogs prof-icons" style="font-size: 25px;"></span></a></li>
                   </div>
                   <div class="col-md-6">
                     <li>

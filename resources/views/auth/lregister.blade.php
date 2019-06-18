@@ -1,11 +1,11 @@
 @extends('layouts.auths')
-@section('title') Login @endsection
+@section('title') Join The Network @endsection
 @section('content')
 <form class="form-signin" style="margin-top: 5%;" method="POST" action="{{ route('login') }}">
 	@csrf
 	<div class="panel periodic-login">
 		<div class="panel-body text-center">
-		    <p class="atomic-mass">Welcome Back | Login</p>
+		    <p class="atomic-mass">Join Now! | Register Once</p>
 		    <p class="element-name">{{ config('app.name') }}</p>
 
 		    <i class="icons icon-arrow-down"></i>
@@ -32,16 +32,11 @@
 		    <label class="pull-left">
 		    	<input type="checkbox" class="icheck pull-left" name="remember"  id="remember" {{ old('remember') ? 'checked' : '' }} /> {{ __('Remember Me') }}
 		    </label>
-		    <input type="submit" class="btn col-md-12" value="{{ __('Login Now') }}"/>
+		    <input type="submit" class="btn col-md-12" value="{{ __('Register') }}"/>
 		</div>
 
 	    <div class="text-center" style="padding:5px;">
-	        @if (Route::has('password.request'))
-                <a class="" href="{{ route('password.request') }}">
-                    {{ __('Forgot Your Password?') }}
-                </a>
-            @endif
-	        <a href="{{ route('register') }}"> | Signup</a>
+	        <a href="{{ route('login') }}"> {{ __('I have an account already!') }}</a>
 	    </div>
 	</div>
 </form>

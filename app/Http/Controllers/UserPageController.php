@@ -42,9 +42,20 @@ class UserPageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function settings()
+    {
+        $user = Auth::user();
+        return view('user.index', compact(['user']));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function profile()
     {
-    	$user = Auth::user();
+        $user = Auth::user();
         return view('user.settings.profile', compact(['user']));
     }
 
