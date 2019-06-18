@@ -25,7 +25,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('ministry.posts.index', compact(['posts']));
+        return view('system.posts.index', compact(['posts']));
     }
 
     /**
@@ -35,7 +35,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('ministry.posts.create');
+        return view('system.posts.create');
     }
 
     /**
@@ -61,7 +61,7 @@ class PostController extends Controller
         if (!$post) {
             return redirect()->route('posts.index')->with('danger', 'Post Not Found!');
         }
-        return view('ministry.posts.show', compact(['post']));
+        return view('system.posts.show', compact(['post']));
     }
 
     /**
@@ -76,7 +76,7 @@ class PostController extends Controller
         if (!$post) {
             return redirect()->route('posts.index')->with('danger', 'Post Not Found!');
         }
-        return view('ministry.posts.edit', compact(['post']));
+        return view('system.posts.edit', compact(['post']));
     }
 
     /**

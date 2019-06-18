@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('profile_image')->nullable()->default('profile.jpg');
             $table->string('telephone')->nullable();                                        //
             $table->string('date_of_birth')->nullable();                                           //
+            $table->string('maritual_status')->nullable();                                          //
             $table->string('occupation')->nullable();                                    //
             $table->string('location')->default('Bugolobi - Kampala, Uganda')->nullable();
             $table->string('nationality')->nullable();

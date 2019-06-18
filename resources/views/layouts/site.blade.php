@@ -8,7 +8,9 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>@yield('title') | {{ config('app.name') }}</title>
         <!-- start: Css -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('asset/css/bootstrap.min.css') }}">
+        <!-- <link rel="stylesheet" type="text/css" href="{{ asset('asset/css/bootstrap.min.css') }}"> -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
         <!-- plugins -->
         <link rel="stylesheet" type="text/css" href="{{ asset('asset/css/plugins/font-awesome.min.css') }}"/>
         <link rel="stylesheet" type="text/css" href="{{ asset('asset/css/plugins/simple-line-icons.css') }}"/>

@@ -18,7 +18,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('department_id')->nullable()->unsigned();
             $table->integer('project_id')->nullable()->unsigned();
             
-            $table->string('topic')->nullable()->default('No specified title!');
+            $table->string('topic')->nullable()->default('No title!');
             $table->text('description');
             $table->integer('asked_by')->unsigned();
             $table->integer('responder')->nullable()->unsigned();

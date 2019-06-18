@@ -27,37 +27,38 @@
                 <div class="panel-body padding-0">
                     <!-- <h4 class="card-title m-b-40">User Management And Administration</h4> -->
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item"> 
+                        <li class="nav-item active"> 
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home5" role="tab" aria-controls="home5" aria-expanded="true">
-                                <span class="hidden-sm-up"><i class="ti-user"></i></span> 
+                                <span class="hidden-sm-up"><i class="fa fa-users"></i></span> 
                                 <span class="hidden-xs-down">Users</span>
                             </a> 
                         </li>
                         <li class="nav-item"> 
                             <a class="nav-link" id="roles-tab" data-toggle="tab" href="#roles" role="tab" aria-controls="roles" aria-expanded="true">
-                                <span class="hidden-sm-up"><i class="ti-timer"></i></span> 
+                                <span class="hidden-sm-up"><i class="fa fa-gear"></i></span> 
                                 <span class="hidden-xs-down">User Roles</span>
                             </a> 
                         </li>
                         <li class="nav-item"> 
                             <a class="nav-link" id="accounts-tab" data-toggle="tab" href="#accounts" role="tab" aria-controls="accounts" aria-expanded="true">
-                                <span class="hidden-sm-up"><i class="ti-envelope"></i></span> 
+                                <span class="hidden-sm-up"><i class="fa fa-tree"></i></span> 
                                 <span class="hidden-xs-down">Departments</span>
                             </a> 
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" role="button" aria-haspopup="true" aria-expanded="false">
-                                <span class="hidden-sm-up"><i class="ti-list"></i></span> <span class="hidden-xs-down"> More Empty</span>
+                                <span class="hidden-sm-up"><i class="fa fa-list"></i></span> 
+                                <span class="hidden-xs-down"> ... </span>
                             </a>
-                            <div class="dropdown-menu">
+                            <div class="dropdown-menu" style="padding: 5px;">
                                 <a class="dropdown-item" id="dropdown2-tab" href="#dropdown2" role="tab" data-toggle="tab" aria-controls="dropdown2">
-                                    More
+                                    ...
                                 </a>
                             </div>
                         </li>
                     </ul>
-                    <div class="tab-content tabcontent-border p-20" id="myTabContent">
-                        <div role="tabpanel" class="tab-pane fade show active" id="home5" aria-labelledby="home-tab">
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade in active" id="home5" role="tabpanel" aria-labelledby="home-tab">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class="bg-success text-white">
@@ -77,7 +78,7 @@
                                                 <td>{{ ++$i }}</td>
                                                 <td> <img src="{{ asset('files/profile/images/'. $user->profile_image) }}" style="max-width: 25px; border-radius: 40%;">  {{ $user->name }}</td>
                                                 <td>{{ (App\Models\Role::where('name',$user->role)->get()->first())->display_name }}</td>
-                                                <td>
+                                                <td class="text-center">
                                                     @if($user->status == 'Active')
                                                         <span class="btn-xs btn-rounded label label-success">{{ $user->status }}</span>
                                                     @elseif($user->status == 'Away')
@@ -92,9 +93,9 @@
                                                         <span class="btn-xs btn-rounded label label-default">{{ $user->status }}</span>
                                                     @endif
                                                 </td>
-                                                <td style="min-width: 150px;">
-                                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-md text-info" title="User Details"><i class="fa fa-info-circle"></i></a>
-                                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-md text-primary"><i class="fa fa-edit" title="Edit User Profile"></i></a>
+                                                <td class="text-center" style="min-width: 150px;">
+                                                    <a href="{{ route('users.show', $user->id) }}" class="btn btn-xs btn-info" style="border-radius: 50%;" title="User Details"><i class="fa fa-info-circle"></i></a>
+                                                    <a href="{{ route('users.edit', $user->id) }}" class="btn btn-xs btn-primary" style="border-radius: 50%;"><i class="fa fa-edit" title="Edit User Profile"></i></a>
                                                 </td>
                                             </tr>
                                             @endif
@@ -114,7 +115,7 @@
                             </div>
                         </div>
 
-                        <div role="tabpanel" class="tab-pane fade show" id="roles" aria-labelledby="roles-tab">
+                        <div class="tab-pane fade" id="roles" role="tabpanel" aria-labelledby="roles-tab">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class="bg-danger text-white">
@@ -157,7 +158,7 @@
                             </div>
                         </div>
 
-                        <div role="tabpanel" class="tab-pane fade show" id="accounts" aria-labelledby="accounts-tab">
+                        <div class="tab-pane fade" id="accounts" role="tabpanel" aria-labelledby="accounts-tab">
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead class="bg-info text-white">
@@ -202,7 +203,7 @@
                             </div>
                         </div>
 
-                        <div class="tab-pane fade show" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab">
+                        <div class="tab-pane fade" id="dropdown2" role="tabpanel" aria-labelledby="dropdown2-tab">
                             <p>More Activity</p>
                         </div>
                     </div>

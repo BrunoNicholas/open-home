@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('post_id')->nullable()->unsigned()->index();
             $table->integer('question_id')->nullable()->unsigned()->index();
+            // incidents
             
             $table->integer('responder')->nullable()->unsigned();
             $table->text('comment');

@@ -22,7 +22,20 @@
 	</div>                    
 </div>
 <!-- /end of description section -->
+<div class="col-md-12" style="padding:20px;">
+    <div class="col-md-12 padding-0">
+        <div class="col-md-9 padding-0">
+            <div class="panel box-v4">
+                <div class="panel-body padding-0">
 
+
+                    
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Models\Project;
-use App\Models\Question; 
-use App\Models\Committee;
+use App\Models\Question;
 use App\Models\Department;
 use Illuminate\Http\Request;
 
@@ -29,7 +28,7 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::latest()->paginate();
-        return view('ministry.questions.index', compact(['questions']));
+        return view('system.questions.index', compact(['questions']));
     }
 
     /**
@@ -39,11 +38,10 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $committees     = Committee::all();
         $departments    = Department::all();
         $projects       = Project::all();
         $questions = Question::latest()->paginate();
-        return view('ministry.questions.create', compact(['questions','committees','departments','projects']));
+        return view('system.questions.create', compact(['questions','departments','projects']));
     }
 
     /**
@@ -77,7 +75,7 @@ class QuestionController extends Controller
         if (!$question) {
             return redirect()->route('questions.index')->with('danger', 'Question Not Found!');
         }
-        return view('ministry.questions.show', compact(['question','questions']));
+        return view('system.questions.show', compact(['question','questions']));
     }
 
     /**
@@ -89,14 +87,13 @@ class QuestionController extends Controller
     public function edit($id)
     {
         $question = Question::find($id);
-        $committees     = Committee::all();
         $departments    = Department::all();
         $projects       = Project::all();
         $users          = User::all();
         if (!$question) {
             return redirect()->route('questions.index')->with('danger', 'Question Not Found!');
         }
-        return view('ministry.questions.edit', compact(['users','question','committees','projects','departments']));
+        return view('system.questions.edit', compact(['users','question','projects','departments']));
     }
 
     /**

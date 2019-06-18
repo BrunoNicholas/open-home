@@ -23,11 +23,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified','role:supe
 	]);
 });
 Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function(){
+	Route::resource('incidents', 'IncidentController');
 	Route::resource('/{type}/messages', 'MessageController');
-	Route::resource('/projects', 'ProjectController');
+	Route::resource('structure/departments/projects', 'ProjectController');
 	Route::resource('/questions', 'QuestionController');
 	Route::resource('projects/posts', 'PostController');
 	Route::resource('structure/departments', 'DepartmentController');
+	Route::resource('structure/reports', 'ReportController');
 	/**
 	 * Route Closures
 	 */

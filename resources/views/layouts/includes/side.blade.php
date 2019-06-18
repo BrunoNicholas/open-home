@@ -18,80 +18,53 @@
 	        </li>
 	        <li class="ripple">
 		        <a class="tree-toggle nav-header">
-		            <span class="fa-diamond fa"></span> Layout
+		            <span class="fa-list fa"></span> Incidences
 		            <span class="fa-angle-right fa right-arrow text-right"></span>
 		        </a>
 		        <ul class="nav nav-list tree">
-		            <li><a href="javascript:void(0)">Top Navigation</a></li>
-		            <li><a href="javascript:void(0)">Boxed</a></li>
+		            <li><a href="{{ route('incidents.index') }}"> All Incidences </a></li>
+		            <li><a href="{{ route('incidents.create') }}"> Report Case </a></li>
+		            <li><a href="javascript:void(0)"> Map of Incidents </a></li>
 		        </ul>
 	        </li>
 	        <li class="ripple">
 		        <a class="tree-toggle nav-header">
-		            <span class="fa-area-chart fa"></span> Charts
+		            <span class="fa-diamond fa"></span> Posts
 		            <span class="fa-angle-right fa right-arrow text-right"></span>
 		        </a>
 		        <ul class="nav nav-list tree">
-		            <li><a href="javascript:void(0)">ChartJs</a></li>
-		            <li><a href="javascript:void(0)">Morris</a></li>
-		            <li><a href="javascript:void(0)">Flot</a></li>
-		            <li><a href="javascript:void(0)">SparkLine</a></li>
+		            <li><a href="{{ route('posts.index') }}"> All Posts </a></li>
+		            <li><a href="{{ route('posts.create') }}"> Add Post </a></li>
 		        </ul>
 	        </li>
 	        <li class="ripple">
 	        	<a class="tree-toggle nav-header">
-	        		<span class="fa fa-pencil-square"></span> Ui Elements  
+	        		<span class="fa fa-pencil-square"></span> Questions  
 	        		<span class="fa-angle-right fa right-arrow text-right"></span> 
 	        	</a>
 		        <ul class="nav nav-list tree">
-		            <li><a href="javascript:void(0)">Color</a></li>
-		            <li><a href="javascript:void(0)">Weather</a></li>
+		            <li><a href="{{ route('questions.index') }}"> My Questions </a></li>
+		            <li><a href="{{ route('questions.create') }}"> Ask Question </a></li>
 		        </ul>
 	        </li>
-	        <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span> Forms  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+	        <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-check-square-o"></span> Reports  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
 		        <ul class="nav nav-list tree">
-		            <li><a href="javascript:void(0)">Form Element</a></li>
-		            <li><a href="javascript:void(0)">Wizard</a></li>
-		            <li><a href="javascript:void(0)">File Upload</a></li>
-		            <li><a href="javascript:void(0)">Text Editor</a></li>
+		            <li><a href="{{ route('reports.index') }}"> Incident Reports </a></li>
+		            <li><a href="{{ route('reports.index') }}"> All Reports </a></li>
+		            <li><a href="{{ route('reports.create') }}"> Add New </a></li>
 		        </ul>
 	        </li>
-	        <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-table"></span> Tables  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+	        <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-gear"></span> Management  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
 		        <ul class="nav nav-list tree">
-		            <li><a href="javascript:void(0)">Data Tables</a></li>
-		            <li><a href="javascript:void(0)">handsontable</a></li>
-		            <li><a href="javascript:void(0)">Static</a></li>
+		            <li><a href="{{ route('projects.index') }}"> Projects </a></li>
+		            <li><a href="{{ route('departments.index') }}"> Departments </a></li>
+		            <li><a href="javascript:void(0)"> Reviews </a></li>
 		        </ul>
 	        </li>
-	        <li class="ripple"><a href="calendar.html"><span class="fa fa-calendar-o"></span>Calendar</a></li>
-	        <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-envelope-o"></span> Mail <span class="fa-angle-right fa right-arrow text-right"></span> </a>
+	        <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-user"></span> User  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
 		        <ul class="nav nav-list tree">
-		            <li><a href="javascript:void(0)">Inbox</a></li>
-		            <li><a href="javascript:void(0)">Compose Mail</a></li>
-		            <li><a href="javascript:void(0)">View Mail</a></li>
-		        </ul>
-	        </li>
-	        <li class="ripple"><a class="tree-toggle nav-header"><span class="fa fa-file-code-o"></span> Pages  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-		        <ul class="nav nav-list tree">
-		            <li><a href="javascript:void(0)">Forgot Password</a></li>
-		            <li><a href="javascript:void(0)">SignIn</a></li>
-		        </ul>
-	        </li>
-	        <li class="ripple"><a class="tree-toggle nav-header"><span class="fa "></span> MultiLevel  <span class="fa-angle-right fa right-arrow text-right"></span> </a>
-		        <ul class="nav nav-list tree">
-		            <li><a href="view-mail.html">Level 1</a></li>
-		            <li><a href="view-mail.html">Level 1</a></li>
-		            <li class="ripple">
-			            <a class="sub-tree-toggle nav-header">
-			                <span class="fa fa-envelope-o"></span> Level 1
-			                <span class="fa-angle-right fa right-arrow text-right"></span>
-			            </a>
-			            <ul class="nav nav-list sub-tree">
-			                <li><a href="javascript:void(0)">Level 2</a></li>
-			                <li><a href="javascript:void(0)">Level 2</a></li>
-			                <li><a href="javascript:void(0)">Level 2</a></li>
-			            </ul>
-		            </li>
+		            <li><a href="{{ route('profile') }}"> My Profile </a></li>
+		            <li><a href="javascript:void(0)"> My Settings </a></li>
 		        </ul>
 	        </li>
 	        <li class="text-center">
