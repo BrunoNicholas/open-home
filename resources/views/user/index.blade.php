@@ -1,6 +1,7 @@
 @extends('layouts.site')
 @section('title') User Settings @endsection
 @section('content')
+@include('layouts.includes.notifications')
 <div class="panel">
 	<div class="panel-body">
 	      <div class="col-md-6 col-sm-12">

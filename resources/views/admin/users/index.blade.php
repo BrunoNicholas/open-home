@@ -6,7 +6,7 @@
 @section('content')
 <div class="panel">
 	<div class="panel-body">
-	      <div class="col-md-6 col-sm-12">
+	    <div class="col-md-6 col-sm-12">
 	        <h3 class="animated fadeInLeft"> System Users | {{ config('app.name') }} </h3>
 	        <p> Manage all system users! <a href="{{ route('users.create') }}" class="btn btn-xs btn-info btn rounded" title="Add New User"><i class="fa-user-plus fa"></i></a> </p>
 	    </div>
@@ -24,6 +24,7 @@
         </div>
 	</div>                    
 </div>
+@include('layouts.includes.notifications')
 <!-- /end of description section -->
 <div class="col-md-12" style="padding:20px;">
     <div class="col-md-12 padding-0">
@@ -49,7 +50,7 @@
                                         <td>{{ ++$i }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
-                                        <td>{{ $user->role }}</td>
+                                        <td>{{ App\Models\Role::where('name',$user->role)->get()->first()->display_name }}</td>
                                         <td>{{ $user->status }}</td>
                                         <td class="text-center">
                                             <a href="{{ route('users.show', $user->id) }}" class="btn btn-md text-info" title="User Details"><i class="fa fa-info-circle"></i></a>

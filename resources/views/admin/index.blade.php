@@ -20,7 +20,7 @@
         </div>
 	</div>                    
 </div>
-
+@include('layouts.includes.notifications')
 <div class="col-md-12" style="padding:20px;">
     <div class="col-md-12 padding-0">
         <div class="col-md-9 padding-0">

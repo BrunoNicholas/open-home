@@ -72,7 +72,7 @@ class UserPageController extends Controller
             $user_image = $request->file('profile_image');
             $filename = time() . '.' . $user_image->getClientOriginalExtension();
 
-            Image::make($user_image)->resize(300, 300)->save( public_path('/files/profile/images/' . $filename) );
+            Image::make($user_image)->resize(300,300)->save( public_path('/files/profile/images/' . $filename) );
             $user = Auth::user();
             $user->profile_image = $filename;
             $user->save();

@@ -20,7 +20,7 @@
         </div>
 	</div>                    
 </div>
-<!-- /end of the page description section -->
+@include('layouts.includes.notifications')
 <div class="col-md-12" style="padding:20px;">
     <div class="col-md-12 padding-0">
         <div class="col-lg-4 col-xlg-3 col-md-5 padding-0">
@@ -45,7 +45,6 @@
                 </div>
             </div>
         </div>
-
         <div class="col-lg-8 col-xlg-9 col-md-7 padding-0">
             <div class="panel box-v4">
                 <div class="panel-body padding-0">
