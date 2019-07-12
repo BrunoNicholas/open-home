@@ -187,31 +187,27 @@
             <div class="panel box-v4">
                 <div class="panel-body">
                     <h4 class="card-title"> <img src="{{ asset('files/profile/images/'. $user->profile_image) }}" style="max-width: 30px; border-radius: 50%;"> User Profile Operations</h4>
-                    <div class="table-responsive">
-                        <div class="row text-center">
-                            <div class="col-md-12">
-                                <img src="{{ asset('files/profile/images/'.$user->profile_image) }}" alt="user image" style="max-width: 98%; border-radius: 3px;">
-                            </div>
-                            @role(['super-admin','admin'])
-                            <div class="col-md-12">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <a href="{{ route('users.index') }}" class="btn btn-primary btn-rounded btn-block" style="margin: 10px;"> Back </a>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <form method="POST" action="{{ route('users.destroy', $user->id) }}">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-                                            <div class="tools" style="margin: 10px;">
-                                                <button type="submit" class="btn btn-danger btn-rounded btn-block"
-                                                    @if($user->id == Auth::user()->id) disabled @elseif($user->role == 'super-admin') disabled @endif onclick="return confirm('You are about to delete {{ $user->name }}\'s account!\nThis is not reversible!')" title="You can not delete your profile"> Delete </button>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                            @endrole
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <img src="{{ asset('files/profile/images/'.$user->profile_image) }}" alt="user image" style="max-width: 98%; border-radius: 3px;">
                         </div>
+                        @role(['super-admin','admin'])
+                        <div class="row">
+                            <div class="col-md-6">
+                                <a href="{{ route('users.index') }}" class="btn btn-primary btn-rounded btn-block"> Back </a>
+                            </div>
+                            <div class="col-md-6">
+                                <form method="POST" action="{{ route('users.destroy', $user->id) }}">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <div class="tools">
+                                        <button type="submit" class="btn btn-danger btn-rounded btn-block"
+                                            @if($user->id == Auth::user()->id) disabled @elseif($user->role == 'super-admin') disabled @endif onclick="return confirm('You are about to delete {{ $user->name }}\'s account!\nThis is not reversible!')" title="You can not delete your profile"> Delete </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        @endrole
                     </div>
                 </div>
             </div>

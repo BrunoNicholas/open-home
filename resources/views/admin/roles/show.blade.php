@@ -77,23 +77,20 @@
             <div class="panel box-v4">
                 <div class="panel-body ">
                     <h4 class="panel-title">  User Role Operations </h4>
-                    <div class="table-responsive">
-                        <div class="row text-center">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <a href="{{ route('roles.index') }}" class="btn btn-primary btn-rounded btn-block" style="margin: 10px;"> Back </a>
+                    <hr>
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <a href="{{ route('roles.index') }}" class="btn btn-primary btn-rounded btn-block"> Back </a>
+                        </div>
+                        <div class="col-md-6">
+                            <form method="POST" action="{{ route('roles.destroy', $role->id) }}">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                                <div class="tools">
+                                    <button type="submit" class="btn btn-danger btn-rounded btn-block"
+                                        @if(Auth::user()->role != 'super-admin') disabled @endif onclick="return confirm('You are about to delete!\nThis is not reversible!')" title="You can not delete your profile"> Delete </button>
                                 </div>
-                                <div class="col-md-6">
-                                    <form method="POST" action="{{ route('roles.destroy', $role->id) }}">
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <div class="tools" style="margin: 10px;">
-                                            <button type="submit" class="btn btn-danger btn-rounded btn-block"
-                                                @if(Auth::user()->role != 'super-admin') disabled @endif onclick="return confirm('You are about to delete!\nThis is not reversible!')" title="You can not delete your profile"> Delete </button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>

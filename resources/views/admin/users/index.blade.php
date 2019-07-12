@@ -8,7 +8,7 @@
 	<div class="panel-body">
 	    <div class="col-md-6 col-sm-12">
 	        <h3 class="animated fadeInLeft"> System Users | {{ config('app.name') }} </h3>
-	        <p> Manage all system users! <a href="{{ route('users.create') }}" class="btn btn-xs btn-info btn rounded" title="Add New User"><i class="fa-user-plus fa"></i></a> </p>
+	        <p> Manage all system users! <a href="{{ route('users.create') }}" class="btn btn-xs btn-success btn rounded" title="Add New User"><i class="fa-user-plus fa"></i></a> </p>
 	    </div>
 	    <div class="col-7 align-self-center pull-right">
             <div class="d-flex no-block justify-content-end align-items-center">
@@ -53,8 +53,8 @@
                                         <td>{{ App\Models\Role::where('name',$user->role)->get()->first()->display_name }}</td>
                                         <td>{{ $user->status }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-md text-info" title="User Details"><i class="fa fa-info-circle"></i></a>
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-md text-primary"><i class="fa fa-edit" title="Edit User Profile"></i></a>
+                                            <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-success" title="User Details"><i class="fa fa-info-circle"></i></a>
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit" title="Edit User Profile"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -51,8 +51,8 @@
                                         <td>{{ $role->display_name }}</td>
                                         <td style="max-width: 150px;">{{ $role->description }}</td>
                                         <td style="min-width: 100px; text-align: center;">
-                                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-md text-info" title="Role Details"><i class="fa fa-info-circle"></i></a>
-                                            <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-md text-primary"><i class="fa fa-edit" title="Edit Role Details"></i></a>
+                                            <a href="{{ route('roles.show', $role->id) }}" class="btn btn-sm btn-danger" title="Role Details"><i class="fa fa-info-circle"></i></a>
+                                            <a href="{{ route('roles.edit', $role->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit" title="Edit Role Details"></i></a>
                                         </td>
                                     </tr>
                                 @endforeach
