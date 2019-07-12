@@ -30,7 +30,6 @@
         <div class="col-md-8 padding-0">
             <div class="panel box-v4">
                 <div class="panel-body padding">
-                    
                     <h4 class="card-title">Edit {{ $role->display_name }} Details | {{ config('app.name') }} </h4>
                     <h6 class="card-subtitle"></h6>
                     <form action="{{ route('roles.update', $role->id) }}" method="POST" class="tab-wizard wizard-circle">
@@ -96,7 +95,6 @@
                             <button type="submit" class="btn btn-rounded btn-success">Update User Role</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
