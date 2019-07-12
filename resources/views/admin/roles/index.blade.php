@@ -8,7 +8,7 @@
 	<div class="panel-body">
 	      <div class="col-md-6 col-sm-12">
 	        <h3 class="animated fadeInLeft"> User Roles | {{ config('app.name') }} </h3>
-	        <p> Manage the user roles! </p>
+	        <p> Manage the user roles! <a href="{{ route('roles.create') }}" class="btn btn-xs btn-danger" title="Add new user role"><i class="fa-plus fa"></i> New</a> </p>
 	    </div>
 	    <div class="col-7 align-self-center pull-right">
             <div class="d-flex no-block justify-content-end align-items-center">
