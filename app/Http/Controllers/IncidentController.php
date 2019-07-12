@@ -14,7 +14,8 @@ class IncidentController extends Controller
      */
     public function index()
     {
-        //
+        $incidents = Incident::latest()->paginate();
+        return view('system.incidents.index',compact(['incidents']));
     }
 
     /**

@@ -74,9 +74,9 @@
                                             <div class="sl-left"> <img src="{{ asset('files/profile/images/' . Auth::user()->profile_image) }}" alt="user" class="rounded-circle" /> </div>
                                             <div class="sl-right">
                                                 <div><a href="javascript:void(0)" class="link">{{ Auth::user()->name }}</a> - <span class="sl-date">{{ Auth::user()->created_at }}</span>
-                                                    <p class="m-t-10"> This is the cover area for the expected questions by this very user </p>
+                                                    <p class="m-t-10"> Thank you for using {{ config('app.name') }} </p>
                                                 </div>
-                                                <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10">2 comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> </div>
+                                                <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> from {{ config('app.name') }}</a> </div>
                                             </div>
                                         </div>
                                         <hr>

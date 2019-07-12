@@ -1,7 +1,8 @@
 <?php
 
 Route::get('/', function () {
-    return view('welcome');
+	return redirect()->route('home')->with('info','Welcome back!');
+    # return view('welcome');
 });
 
 Route::get('/test', function () {
@@ -29,7 +30,8 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 	Route::resource('/questions', 'QuestionController');
 	Route::resource('projects/posts', 'PostController');
 	Route::resource('structure/departments', 'DepartmentController');
-	Route::resource('structure/reports', 'ReportController');
+	Route::resource('structure/reports', 'ReportsController');
+	Route::resource('setings/{type}/{id}/comments', 'CommentController');
 	/**
 	 * Route Closures
 	 */

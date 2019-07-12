@@ -14,7 +14,7 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($type=None, $id)
+    public function index($type=null, $id)
     {
         if ($type == 'post') {
             $post = Post::find($id);
@@ -36,7 +36,7 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($type=None, $id)
+    public function create($type=null, $id)
     {
         return view('system.comments.create',compact(['type','id']));
     }
@@ -72,7 +72,7 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function show($type=None, $id, $comment_id)
+    public function show($type=null, $id, $comment_id)
     {
         $comment = Comment::find($comment_id);
         if (!$comment) {
@@ -87,7 +87,7 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function edit($type=None, $id, $comment_id)
+    public function edit($type=null, $id, $comment_id)
     {
         $comment = Comment::find($comment_id);
         if (!$comment) {
@@ -103,7 +103,7 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $type=None,$item_id,$id)
+    public function update(Request $request, $type=null,$item_id,$id)
     {
         request()->validate([
             'comment' => 'required',
@@ -128,7 +128,7 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy($type=None,$item_id,$id)
+    public function destroy($type=null,$item_id,$id)
     {
         $item = Comment::where('id',$id)->get()->first();
         $item->delete();

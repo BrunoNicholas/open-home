@@ -14,7 +14,7 @@
 		        <span class="bar"></span>
 		        <label><i class="fa fa-envelope"></i> {{ __('E-Mail Address') }}</label>
 		        @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback text-danger" role="alert" style="background-color: #fff">
                         <strong>{{ $errors->first('email') }}</strong>
                     </span>
                 @endif
@@ -24,7 +24,7 @@
 		        <span class="bar"></span>
 		        <label><i class="fa fa-key"></i> {{ __('Password') }}</label>
 		        @if ($errors->has('password'))
-                    <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback text-danger" role="alert" style="background-color: #fff">
                         <strong>{{ $errors->first('password') }}</strong>
                     </span>
                 @endif

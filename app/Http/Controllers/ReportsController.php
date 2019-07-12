@@ -14,7 +14,8 @@ class ReportsController extends Controller
      */
     public function index()
     {
-        //
+        $reports = Reports::latest()->paginate();
+        return view('system.reports.index', compact(['reports']));
     }
 
     /**
@@ -24,7 +25,8 @@ class ReportsController extends Controller
      */
     public function create()
     {
-        //
+        $reports = Reports::latest()->paginate();
+        return view('system.reports.create', compact(['reports']));
     }
 
     /**
@@ -35,7 +37,7 @@ class ReportsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 
     }
 
     /**
@@ -44,9 +46,10 @@ class ReportsController extends Controller
      * @param  \App\Models\Reports  $reports
      * @return \Illuminate\Http\Response
      */
-    public function show(Reports $reports)
+    public function show($id)
     {
-        //
+        $report = Reports::find($id);
+        return view('system.reports.show',compact(['report']));
     }
 
     /**
@@ -55,9 +58,10 @@ class ReportsController extends Controller
      * @param  \App\Models\Reports  $reports
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reports $reports)
+    public function edit($id)
     {
-        //
+        $report = Reports::find($id);
+        return view('system.reports.edit',compact(['report']));
     }
 
     /**
@@ -67,7 +71,7 @@ class ReportsController extends Controller
      * @param  \App\Models\Reports  $reports
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reports $reports)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,7 +82,7 @@ class ReportsController extends Controller
      * @param  \App\Models\Reports  $reports
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reports $reports)
+    public function destroy($id)
     {
         //
     }
