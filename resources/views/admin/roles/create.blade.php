@@ -14,7 +14,7 @@
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}"> <i class="fa fa-home"></i> Home</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('admin') }}"> <i class="fa fa-user-plus"></i> Administrator </a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('roles.create') }}"> <i class="fa fa-user-plus"></i> User Roles </a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('roles.index') }}"> <i class="fa fa-user-plus"></i> User Roles </a></li>
                         <li class="breadcrumb-item active" aria-current="page"> <i class="fa fa-plus"></i> Add Role </li>
                     </ol>
                     <p class="animated fadeInDown"><span class="fa fa-user"></span> Logged in as <a href="{{ route('profile') }}">{{ Auth::user()->name }}</a> | {{ App\Models\Role::where('name',Auth::user()->role)->get()->first()->display_name }} </p>
