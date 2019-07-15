@@ -26,7 +26,7 @@
     </head>
 
     <body id="mimin" class="dashboard form-signin-wrapper">
-        <div class="container">
+        <div class="container" style="background-image: url({{ asset('asset/img/login.jpg') }}),linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ); background-size: cover; align-items: center; background-attachment: fixed; width: 100%; height: 100%;">
             @yield('content')
         </div>
         <!-- end: Content -->
