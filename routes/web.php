@@ -6,7 +6,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('auth.llregister');
+    return view('auth.rverify');
 });
 
 Auth::routes(['verify' => true]);
