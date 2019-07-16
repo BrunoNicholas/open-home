@@ -1,7 +1,7 @@
 @extends('layouts.auths')
 @section('title') Create Account @endsection
 @section('content')
-	<div class="form-signin" style="margin-top: 5%; padding-bottom:250px;">
+	<div class="form-signin" style="margin-top: 5%; padding-bottom:190px;">
 		@csrf
 		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>
@@ -26,6 +26,10 @@
                 <div class="form-group form-animate-text" style="margin-top:40px !important; font-size: 15px;">
                 	{{ __('NOTE: Before proceeding, please check your email for a verification link.') }}
                 	{{ __('If you did not receive the email') }}, <a href="{{ route('verification.resend') }}">{{ __('click here to request another') }}</a>
+                </div>
+                <div class="form-group form-animate-text text-center" style="margin-top:40px !important; font-size: 15px;">
+                	<a href="{{ route('logout') }}" class="btn btn-sm btn-danger btn-round" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout!</a>
+                	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
                 </div>
 			</div>
 		</div>

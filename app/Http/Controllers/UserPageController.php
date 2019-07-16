@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Devotional;
 use App\Models\Question;
 use App\Models\Message;
-use App\Models\Events;
-use App\Models\Chat;
 use Image;
 use Auth;
 
@@ -32,9 +29,7 @@ class UserPageController extends Controller
     public function home()
     {
         $questions = Question::latest()->paginate();
-        $events = Events::latest()->paginate();
-        $devotions = Devotional::latest()->paginate();
-        return view('home', compact(['questions','events','devotions']));
+        return view('home', compact(['questions']));
     }
 
     /**

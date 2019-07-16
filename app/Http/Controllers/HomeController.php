@@ -30,4 +30,13 @@ class HomeController extends Controller
         }
         return view('home')->with('info','Welcome back, ' . ' - ' . Auth::user()->name . '!');
     }
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function userIndex()
+    {
+        return view('home')->with('info','Welcome back, ' . ' - ' . Auth::user()->name . '!');
+    }
 }

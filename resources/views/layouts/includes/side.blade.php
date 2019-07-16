@@ -16,7 +16,8 @@
 		            <li class="@if(route('home') == Request::fullUrl()) active @endif"><a href="{{ route('home') }}"> <i class="fa-home fa text-info"></i> Home </a></li>
 		            <li class="@if(route('messages.index','inbox') == Request::fullUrl()) active @endif"><a href="{{ route('messages.index','inbox') }}"> <i class="fa-envelope fa text-success"></i> Messages </a></li>
 		            @role(['admin','super-admin'])
-		            	<li class="text-danger @if(route('admin') == Request::fullUrl()) active @endif"><a href="{{ route('admin') }}"> <i class="fa-user-plus fa text-danger"></i> Administrator </a></li>
+		            	<li class="text-primary @if(route('userhome') == Request::fullUrl()) active @endif">  <a href="{{ route('userhome') }}"> <i class="fa-dashboard fa text-primary"></i> User Home </a></li>
+		            	{{-- <li class="text-danger @if(route('admin') == Request::fullUrl()) active @endif"><a href="{{ route('admin') }}"> <i class="fa-user-plus fa text-danger"></i> Administrator </a></li> --}}
 		            @endrole
 		        </ul>
 	        </li>

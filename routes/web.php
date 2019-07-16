@@ -11,6 +11,10 @@ Route::get('/test', function () {
 
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/user', [
+	'as' 	=> 'userhome',
+	'uses'	=> 'HomeController@userIndex'
+]);
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified','role:super-admin|admin']], function(){
 	Route::resource('/roles', 'RoleController');

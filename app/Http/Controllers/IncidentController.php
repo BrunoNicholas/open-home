@@ -25,7 +25,8 @@ class IncidentController extends Controller
      */
     public function create()
     {
-        //
+        $incidents = Incident::latest()->paginate();
+        return view('system.incidents.create',compact(['incidents']));
     }
 
     /**
@@ -36,7 +37,13 @@ class IncidentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'user_id'   => 'required',
+            'title'     => 'required',
+
+        ]);
+        Incident::create($request->all());
+        return redirect()->route('incidents.index')->with('success','Incident submitted successfully');
     }
 
     /**
@@ -45,9 +52,13 @@ class IncidentController extends Controller
      * @param  \App\Models\Incident  $incident
      * @return \Illuminate\Http\Response
      */
-    public function show(Incident $incident)
+    public function show($id)
     {
-        //
+        $incident = Incident::find($id);
+        if (!$incident) {
+            return redirect()->route('incidents.index')->with('danger', 'The specified incident does not exist!');
+        }
+        return view('system.incidents.show',compact(['incident']));
     }
 
     /**
@@ -56,9 +67,13 @@ class IncidentController extends Controller
      * @param  \App\Models\Incident  $incident
      * @return \Illuminate\Http\Response
      */
-    public function edit(Incident $incident)
+    public function edit($id)
     {
-        //
+        $incident = Incident::find($id);
+        if (!$incident) {
+            return redirect()->route('incidents.index')->with('danger', 'The specified incident does not exist!');
+        }
+        return view('system.incidents.edit',compact(['incident']));
     }
 
     /**
@@ -68,7 +83,7 @@ class IncidentController extends Controller
      * @param  \App\Models\Incident  $incident
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Incident $incident)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -81,6 +96,8 @@ class IncidentController extends Controller
      */
     public function destroy(Incident $incident)
     {
-        //
+        $item = Incident::find($id);
+        $item->delete();
+        return redirect()->route('users.index')->with('danger', 'Incident Deleted Successfully');
     }
 }
