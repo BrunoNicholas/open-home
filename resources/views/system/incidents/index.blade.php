@@ -32,7 +32,7 @@
                         <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th># (Edit)</th>
                                     <th>Title</th>
                                     <th>Added By</th>
                                     <th>Description</th>

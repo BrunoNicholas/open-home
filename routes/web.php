@@ -39,6 +39,12 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 	/**
 	 * Route Closures
 	 */
+
+	Route::post('/{type}/message', [
+		'as'	=> 'messages.storeAll',
+		'uses'	=> 'MessageController@storeAll'
+	]);
+
 	Route::get('/user', [
 		'as' 	=> 'home.user',
 		'uses'	=> 'UserPageController@home',

@@ -21,11 +21,11 @@
 	</div>                    
 </div>
 @include('layouts.includes.notifications')
-<div class="col-md-12" style="padding:20px;">
+<div class="col-md-12" style="padding:10px;">
     <div class="col-md-12 padding-0">
         <div class="col-lg-4 col-xlg-3 col-md-5 padding-0">
             <div class="panel box-v4">
-                <div class="panel-body padding-0">
+                <div class="panel-body">
                     <center class="m-t-30"> <img src="{{ asset('files/profile/images/' . Auth::user()->profile_image) }}" class="rounded-circle" width="150" alt="Profile Image" />
                         <h4 class="panel-title m-t-10">{{ Auth::user()->name }}</h4>
                         <h6 class="panel-subtitle">{{ (App\Models\Role::where('name',Auth::user()->role)->get()->first())->display_name }}</h6>

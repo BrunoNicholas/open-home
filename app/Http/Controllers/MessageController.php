@@ -15,14 +15,14 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($type=null)
+    public function index($type=None)
     {
         $allCount   = DB::table('messages')->where('sender', Auth::user()->id)->orWhere('receiver', Auth::user()->id)->count();
         $inboxCount = DB::table('messages')->where([['status', 'inbox'],['receiver', Auth::user()->id]])->count();
         $trashCount = DB::table('messages')->where([['status', 'trash'],['receiver', Auth::user()->id]])->count();
         $draftCount = DB::table('messages')->where([['status', 'draft'],['sender', Auth::user()->id]])->count();
         $spamCount  = DB::table('messages')->where([['status', 'spam'],['receiver', Auth::user()->id]])->count();
-        $sentCount  = DB::table('messages')->where([['sender', Auth::user()->id]])->count();
+        $sentCount  = DB::table('messages')->where('sender', Auth::user()->id)->whereNull('attachment')->count();
         $impCount   = DB::table('messages')->where([
             ['folder', 'important'],
             ['sender', Auth::user()->id]])->orWhere([
@@ -56,48 +56,48 @@ class MessageController extends Controller
         $users      = User::all();
 
         if ($type == 'inbox') {
-            $messages   = DB::table('messages')->where([['status', $type],['receiver', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['status', $type],['receiver', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         elseif ($type == 'trash') {
-            $messages   = DB::table('messages')->where([['status', $type],['receiver', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['status', $type],['receiver', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         elseif ($type == 'draft') {
-            $messages   = DB::table('messages')->where([['status', $type],['sender', '=', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['status', $type],['sender', '=', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         elseif ($type == 'sent') {
-            $messages   = DB::table('messages')->where('sender', Auth::user()->id)->latest()->paginate(7);
+            $messages   = DB::table('messages')->where('sender', Auth::user()->id)->whereNull('attachment')->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         elseif ($type == 'spam') {
-            $messages   = DB::table('messages')->where([['status', $type],['receiver', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['status', $type],['receiver', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         // priority mailing
         elseif ($type == 'important') {
-            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         elseif ($type == 'urgent') {
-            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         elseif ($type == 'official') {
-            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         elseif ($type == 'unofficial') {
-            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
         elseif ($type == 'normal') {
-            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(7);
+            $messages   = DB::table('messages')->where([['folder', $type],['receiver', Auth::user()->id]])->orWhere([['folder', $type],['sender', Auth::user()->id]])->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }else{
             $type = 'all';
-            $messages   = DB::table('messages')->where('sender', Auth::user()->id)->orWhere('receiver', Auth::user()->id)->latest()->paginate(7);
+            $messages   = DB::table('messages')->where('sender', Auth::user()->id)->orWhere('receiver', Auth::user()->id)->latest()->paginate(10);
             return view('user.messages.index', compact(['messages','type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
         }
     }
@@ -109,7 +109,45 @@ class MessageController extends Controller
      */
     public function create()
     {
-        return view('user.messages.index','all');
+        $allCount   = DB::table('messages')->where('sender', Auth::user()->id)->orWhere('receiver', Auth::user()->id)->count();
+        $inboxCount = DB::table('messages')->where([['status', 'inbox'],['receiver', Auth::user()->id]])->count();
+        $trashCount = DB::table('messages')->where([['status', 'trash'],['receiver', Auth::user()->id]])->count();
+        $draftCount = DB::table('messages')->where([['status', 'draft'],['sender', Auth::user()->id]])->count();
+        $spamCount  = DB::table('messages')->where([['status', 'spam'],['receiver', Auth::user()->id]])->count();
+        $sentCount  = DB::table('messages')->where('sender', Auth::user()->id)->whereNull('attachment')->count();
+        $impCount   = DB::table('messages')->where([
+            ['folder', 'important'],
+            ['sender', Auth::user()->id]])->orWhere([
+                ['folder', 'important'],
+                ['receiver', Auth::user()->id]])->count();
+
+        $urgCount   = DB::table('messages')->where([
+            ['folder', 'urgent'],
+            ['sender', Auth::user()->id]])->orWhere([
+                ['folder', 'urgent'],
+                ['receiver', Auth::user()->id]])->count();
+
+        $offCount   = DB::table('messages')->where([
+            ['folder', 'official'],
+            ['sender', Auth::user()->id]])->orWhere([
+                ['folder', 'official'],
+                ['receiver', Auth::user()->id]])->count();
+
+        $unoffCount = DB::table('messages')->where([
+            ['folder', 'unofficial'],
+            ['sender', Auth::user()->id]])->orWhere([
+                ['folder', 'unofficial'],
+                ['receiver', Auth::user()->id]])->count();
+
+        $normalCount= DB::table('messages')->where([
+            ['folder', 'normal'],
+            ['sender', Auth::user()->id]])->orWhere([
+                ['folder', 'normal'],
+                ['receiver', Auth::user()->id]])->count();
+
+        $users      = User::all();
+        $type = 'all';
+        return view('user.messages.create', compact(['type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
     }
 
     /**
@@ -118,7 +156,7 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $type=null)
+    public function store(Request $request, $type=None)
     {
         request()->validate([
             'sender'    => 'required',
@@ -147,6 +185,59 @@ class MessageController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAll(Request $request, $type=None)
+    {
+        request()->validate([
+            'sender'    => 'required',
+            'receiver'  => 'required',
+            'message'   => 'required',
+        ]);
+        if ($request->status == 'Draft') {
+
+            $request->receiver = Auth::user()->id;
+
+            Message::create($request->all());
+
+            return redirect()->route('messages.index', 'inbox')->with('success','Email saved successfully as draft!');
+        }
+
+        $sendMessages = [];
+
+        $users = User::all();
+        foreach ($users as $key => $user) {
+            $msg    = [
+                'sender'    =>  $request->sender,
+                'receiver'  =>  $user->id,
+                'folder'    =>  $request->folder,
+                'title'     =>  $request->title,
+                'message'   =>  $request->message,
+                'priority'  =>  'unseen',
+                'attachment'    =>  'group',
+                'status'    =>  $request->status,
+            ];
+            array_push($sendMessages, $msg);
+        }
+
+        foreach ($sendMessages as $key => $value) {
+            Message::create($value);
+        }
+
+        if ($request->router) {
+            if ($type) {
+                return redirect()->route($request->router, $type)->with('success','Email added successfully!');
+            }
+            return redirect()->route($request->router, 'all')->with('success','Email added successfully!');
+        }
+
+        return redirect()->route('messages.index', 'inbox')->with('success','Email sent successfully!');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\Message  $message
@@ -158,7 +249,7 @@ class MessageController extends Controller
         $inboxCount = DB::table('messages')->where([['status', 'inbox'],['receiver', Auth::user()->id]])->count();
         $trashCount = DB::table('messages')->where([['status', 'trash'],['receiver', Auth::user()->id]])->count();
         $draftCount = DB::table('messages')->where([['status', 'draft'],['receiver', Auth::user()->id]])->count();
-        $sentCount  = DB::table('messages')->where('sender', Auth::user()->id)->count();
+        $sentCount  = DB::table('messages')->where('sender', Auth::user()->id)->whereNull('attachment')->count();
         $spamCount  = DB::table('messages')->where([['status', 'spam'],['receiver', Auth::user()->id]])->count();
         $impCount   = DB::table('messages')->where([['priority', 'important'],['receiver', Auth::user()->id]])->count();
         $urgCount   = DB::table('messages')->where([['priority', 'urgent'],['receiver', Auth::user()->id]])->count();
@@ -172,6 +263,10 @@ class MessageController extends Controller
         if (!$message) {
             return redirect()->route('messages.index',$type)->with('danger', 'Email Message Not Found!');
         }
+        if ($message->sender == Auth::user()->id) {
+            return view('user.messages.show', compact(['message','type','id','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
+        }
+        $message->update(['priority' => 'seen']);
         return view('user.messages.show', compact(['message','type','id','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
     }
 
@@ -187,7 +282,7 @@ class MessageController extends Controller
         if (!$message) {
             return redirect()->route('messages.index')->with('danger', 'Message Not Found!');
         }
-        return view('user.messages.edit', compact('message'));
+        return view('user.message.edit', compact('message'));
     }
 
     /**

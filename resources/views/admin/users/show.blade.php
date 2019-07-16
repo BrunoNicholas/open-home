@@ -24,7 +24,7 @@
 </div>
 @include('layouts.includes.notifications')
 <!-- /end of description section -->
-<div class="col-md-12" style="padding:20px;">
+<div class="col-md-12" style="padding:10px;">
     <div class="col-md-12 padding-">
         <div class="col-md-8 padding">
             <div class="panel box-v4">
