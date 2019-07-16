@@ -16,7 +16,7 @@
 	                    <ol class="breadcrumb">
 	                        <li class="breadcrumb-item"><a href="{{ route('home') }}"> <i class="fa fa-home"></i> Home</a></li>
 	                        <li class="breadcrumb-item"><a href="{{ route('profile') }}"> <i class="fa fa-user"></i> Profile </a></li>
-	                        <li class="breadcrumb-item"><a href="{{ route('users.index') }}">  <i class="fa fa-envelope"></i> Messages </a></li>
+	                        <li class="breadcrumb-item"><a href="{{ route('messages.index','inbox') }}">  <i class="fa fa-envelope"></i> Messages </a></li>
 	                        <li class="breadcrumb-item active" aria-current="page"> <i class="fa fa-plus"></i> Message Details </li>
 	                    </ol>
 	                    <p class="animated fadeInDown"><span class="fa fa-user"></span> Logged in as <a href="{{ route('profile') }}">{{ Auth::user()->name }}</a> | {{ App\Models\Role::where('name',Auth::user()->role)->get()->first()->display_name }} </p>

@@ -57,7 +57,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::all();
+        $post = Post::find($id);
         if (!$post) {
             return redirect()->route('posts.index')->with('danger', 'Post Not Found!');
         }
@@ -72,7 +72,7 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = Post::all();
+        $post = Post::find($id);
         if (!$post) {
             return redirect()->route('posts.index')->with('danger', 'Post Not Found!');
         }
