@@ -133,7 +133,7 @@
                 <div class="panel-body">
                     <div class="col-md-12 padding-0 text-center">
 	                    <div class="col-md-4 col-sm-4 col-xs-6 padding-0">
-	                        <h3>0</h3> <p>Posts</p>
+	                        <h3>{{ App\Models\Post::where('uploaded_by',Auth::user()->id)->get()->count() }}</h3> <p>Posts</p>
 	                    </div>
                       	<div class="col-md-4 col-sm-4 col-xs-6 padding-0">
                           	<h3>0</h3> <p>Comments</p>

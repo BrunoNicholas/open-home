@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Department;
+use App\Models\Project;
 use App\Models\Comment;
 use App\User;
 
@@ -49,5 +51,25 @@ class Question extends Model
     public function users()
     {
         return $this->belongsTo(User::class);
+    }
+    
+    /**
+     * Belonds to relationship connects both 
+     * the user table and the books table
+     *
+     */
+    public function departments()
+    {
+        return $this->belongsTo(Department::class);
+    }
+    
+    /**
+     * Belonds to relationship connects both 
+     * the user table and the books table
+     *
+     */
+    public function projects()
+    {
+        return $this->belongsTo(Project::class);
     }
 }

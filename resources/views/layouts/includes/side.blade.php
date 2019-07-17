@@ -34,7 +34,7 @@
 	        </li>
 	        <li class="ripple @if(route('posts.index') == Request::fullUrl()) active @endif">
 		        <a class="tree-toggle nav-header">
-		            <span class="fa-diamond fa"></span> Posts
+		            <span class="fa-book fa"></span> Posts
 		            <span class="fa-angle-right fa right-arrow text-right"></span>
 		        </a>
 		        <ul class="nav nav-list tree">
@@ -44,12 +44,12 @@
 	        </li>
 	        <li class="ripple @if(route('questions.index') == Request::fullUrl() || route('questions.create') == Request::fullUrl()) active @endif">
 	        	<a class="tree-toggle nav-header">
-	        		<span class="fa fa-pencil-square"></span> Questions  
+	        		<span class="fa fa-question"></span> Questions  
 	        		<span class="fa-angle-right fa right-arrow text-right"></span> 
 	        	</a>
 		        <ul class="nav nav-list tree">
-		            <li class="@if(route('questions.index') == Request::fullUrl()) active @endif"><a href="{{ route('questions.index') }}"> My Questions </a></li>
-		            <li class="@if(route('questions.create') == Request::fullUrl()) active @endif"><a href="{{ route('questions.create') }}"> Ask Question </a></li>
+		            <li class="@if(route('questions.index') == Request::fullUrl()) active @endif"><a href="{{ route('questions.index') }}"> Asked Questions </a></li>
+		            <li class="@if(route('questions.create') == Request::fullUrl()) active @endif"><a href="{{ route('questions.create') }}"> Ask One </a></li>
 		        </ul>
 	        </li>
 	        <li class="ripple @if(route('reports.index') == Request::fullUrl()) active @endif">
