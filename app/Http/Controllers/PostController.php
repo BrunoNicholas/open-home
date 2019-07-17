@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -35,7 +36,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('system.posts.create');
+        $projects = Project::all();
+        return view('system.posts.create',compact(['projects','']));
     }
 
     /**
@@ -46,7 +48,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'description'     => 'required',
+        ]);
+        Post::create($request->all());
+        return redirect()->route('posts.index')->with('success','Post created successfully');
     }
 
     /**
@@ -73,10 +79,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
+        $projects = Project::all();
         if (!$post) {
             return redirect()->route('posts.index')->with('danger', 'Post Not Found!');
         }
-        return view('system.posts.edit', compact(['post']));
+        return view('system.posts.edit', compact(['post','projects']));
     }
 
     /**
@@ -88,7 +95,11 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate(['description'     => 'required',
+        ]);
+        Post::find($id)->update($request->all());
+
+        return redirect()->route('posts.index')->with('success','Post updated successfully!');
     }
 
     /**

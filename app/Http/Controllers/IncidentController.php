@@ -40,7 +40,6 @@ class IncidentController extends Controller
         request()->validate([
             'user_id'   => 'required',
             'title'     => 'required',
-
         ]);
         Incident::create($request->all());
         return redirect()->route('incidents.index')->with('success','Incident submitted successfully');
@@ -85,7 +84,13 @@ class IncidentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'user_id'   => 'required',
+            'title'     => 'required',
+        ]);
+        Incident::find($id)->update($request->all());
+
+        return redirect()->route('incidents.index')->with('success','Incident updated successfully!');
     }
 
     /**

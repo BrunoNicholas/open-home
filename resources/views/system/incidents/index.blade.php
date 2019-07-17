@@ -29,10 +29,10 @@
             <div class="panel box-v4">
                 <div class="panel-body padding">
                     <div class="responsive-table">
-                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0" style="border: thin solid;">
                             <thead>
                                 <tr>
-                                    <th># (Edit)</th>
+                                    <th>#(Edit)</th>
                                     <th>Title</th>
                                     <th>Added By</th>
                                     <th>Description</th>
@@ -42,13 +42,21 @@
                                 </tr>
                             </thead>
                             <tfoot>
-                                
+                                <tr>
+                                    <th># (Edit)</th>
+                                    <th>Title</th>
+                                    <th>Added By</th>
+                                    <th>Description</th>
+                                    <th>Location</th>
+                                    <th>Update</th>
+                                    <th>Created</th>
+                                </tr>                                
                             </tfoot>
                             <tbody>
                                 <?php $i=0; ?>
                                 @foreach($incidents as $incident)
                                     <tr>
-                                        <td>{{ ++$i }} <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a></td>
+                                        <td style="min-width: 50px;">{{ ++$i }} <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a></td>
                                         <td style="min-width: 150px;"> 
                                             <a href="{{ route('incidents.show', $incident->id) }}">
                                                 @if($incident->attachement)
