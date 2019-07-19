@@ -29,6 +29,123 @@
         <div class="col-md-9 padding-0">
             <div class="panel box-v4">
                 <div class="panel-body">
+                    <ul class="list-unstyled m-t-40" style="overflow-y: auto; max-height: 460px;">
+                        <?php $i=0; ?>
+                        @role(['user','guest'])
+                            @if(sizeof(App\Models\Post::where('status', 'NOT', 'Approved')->get()) < 1)
+                                <li class="media"> No Posts Found! </li>
+                            @endif
+                        @endrole
+                        @if(sizeof($posts) < 1)
+                            <p class="alert alert-danger">No posts found!</p>
+                        @endif
+                        @foreach($posts as $question)
+                            @if($question->status == 'Approved' || $question->uploaded_by == Auth::user()->id)
+                                <a href="{{ route('posts.show', $question->id) }}">
+                                    <li class="media">
+                                        <div class="row">
+                                            <div class="col-md-2 text-center">
+                                                <img class="m-r-15" src="{{ asset('files/profile/images/' . (App\User::where('id',$question->uploaded_by)->get()->first())->profile_image) }}" width="60" alt="User Image" style="border-radius: 50%;">
+                                                <h5 class="mt-0 mb-1">{{ (App\User::where('id',$question->uploaded_by)->get()->first())->name }} @if($question->topic) - {{ $question->topic }} @endif</h5> 
+                                            </div>
+                                            <div class="col-md-10">
+                                                <div class="media-body">
+                                                    {{ $question->description }} <br>
+                                                    <i class="text-info">{{ $question->created_at }}</i>
+                                                    @if($question->uploaded_by == Auth::user()->id)
+                                                        @if($question->status == 'Approved')
+                                                            <span class="label label-success btn-xs btn-rounded">{{ $question->status }}</span>
+                                                        @elseif($question->status == 'Pending')
+                                                            <span class="label label-primary btn-xs btn-rounded">{{ $question->status }}</span>
+                                                        @elseif($question->status == 'Rejected')
+                                                            <span class="label label-danger btn-xs btn-rounded">{{ $question->status }}</span>
+                                                        @else
+                                                            <span class="label label-warning btn-xs btn-rounded">{{ $question->status }}</span>
+                                                        @endif
+                                                    @else
+                                                        @role(['super-admin','admin']) - 
+                                                            @if($question->status == 'Approved')
+                                                                <span class="label label-success btn-xs btn-rounded">{{ $question->status }}</span>
+                                                            @elseif($question->status == 'Pending')
+                                                                <span class="label label-primary btn-xs btn-rounded">{{ $question->status }}</span>
+                                                            @elseif($question->status == 'Rejected')
+                                                                <span class="label label-danger btn-xs btn-rounded">{{ $question->status }}</span>
+                                                            @else
+                                                                <span class="label label-warning btn-xs btn-rounded">{{ $question->status }}</span>
+                                                            @endif 
+                                                        @endrole
+                                                    @endif
+                                                    <hr>
+                                                    @if($question->response ) <b>Response</b>: <textarea class="form-control" disabled style="background-color:#fff; max-height:400px; overflow-y:auto;">{{ $question->response }}</textarea> 
+                                                        <br>
+                                                        <i>~ {{ (App\User::where('id',$question->responder)->get()->first())->name }} ({{ (App\Models\Role::where('name',(App\User::where('id',$question->responder)->get()->first())->role)->get()->first())->display_name }}) - {{ $question->updated_at }}</i> 
+                                                        <br>
+                                                        <br>
+                                                    @endif
+                                                    <a href="{{ route('posts.show', $question->id) }}" class="btn btn-xs btn-primary"> {{ $question->comments->count() }} Comments</a>
+                                                    @role(['super-admin','admin','editor'])
+                                                        <a href="{{ route('posts.edit', $question->id) }}" class="btn btn-xs btn-warning">Edit Post</a>
+                                                    @endrole
+                                                    <!-- <a href="{{ route('comments.create', ['question',$question->id]) }}" class="btn btn-xs btn-info disabled">Add Comment</a> -->
+                                                    @role(['super-admin','admin','editor'])
+                                                        @if($question->comments->where('status','Pending')->count()) - <span class="label label-info label-lg label-rounded">{{ $question->comments->where('status','Pending')->count() }} Pending Comments</span>@endif
+                                                    @endrole
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </a>
+                                <hr>
+                            @endif
+                            @role(['super-admin','admin','editor'])
+                                @if($question->status != 'Approved' && $question->uploaded_by != Auth::user()->id)
+                                    <a href="{{ route('posts.show', $question->id) }}">
+                                        <li class="media">
+                                            <div class="row">
+                                                <div class="col-md-2 text-center">
+                                                    <img class="m-r-15" src="{{ asset('files/profile/images/' . (App\User::where('id',$question->uploaded_by)->get()->first())->profile_image) }}" width="60" alt="User Image" style="border-radius: 50%;">
+                                                    <h5 class="mt-0 mb-1">{{ (App\User::where('id',$question->uploaded_by)->get()->first())->name }} @if($question->topic) - {{ $question->topic }} @endif</h5> 
+                                                </div>
+                                                <div class="col-md-10">
+                                                    {{ $question->description }}
+                                                    <br>
+                                                    <i class="text-info">{{ $question->created_at }}</i>
+                                                    @role(['super-admin','admin','patron','chaiperson','cu-leader','editor'])  - 
+                                                        @if($question->status == 'Approved')
+                                                            <span class="label label-success btn-xs btn-rounded">{{ $question->status }}</span>
+                                                        @elseif($question->status == 'Pending')
+                                                            <span class="label label-primary btn-xs btn-rounded">{{ $question->status }}</span>
+                                                        @elseif($question->status == 'Rejected')
+                                                            <span class="label label-danger btn-xs btn-rounded">{{ $question->status }}</span>
+                                                        @else
+                                                            <span class="label label-warning btn-xs btn-rounded">{{ $question->status }}</span>
+                                                        @endif
+                                                    @endrole
+                                                    <hr>
+                                                    @if($question->response ) <b>Response</b>: 
+                                                    <textarea class="form-control" disabled style="background-color:#fff; max-height:400px; overflow-y:auto;">{{ $question->response }}</textarea>
+                                                        <br>
+                                                        <i>~ {{ (App\User::where('id',$question->responder)->get()->first())->name }} ({{ (App\Models\Role::where('name',(App\User::where('id',$question->responder)->get()->first())->role)->get()->first())->display_name }}) - {{ $question->updated_at }}</i> 
+                                                        <br>
+                                                        <br>
+                                                    @endif
+                                                    <a href="{{ route('posts.show', $question->id) }}" class="btn btn-xs btn-primary"> {{ $question->comments->count() }} Comments</a>
+                                                    @role(['super-admin','admin','patron','chaiperson','cu-leader','editor'])
+                                                        <a href="{{ route('posts.edit', $question->id) }}" class="btn btn-xs btn-warning">Edit Post</a>
+                                                    @endrole
+                                                    <!-- <a href="{{ route('comments.create', ['question',$question->id]) }}" class="btn btn-xs btn-info disabled">Add Comment</a> -->
+                                                    @if($question->comments->where('status','Pending')->count()) - <span class="label label-info label-rounded">{{ $question->comments->where('status','Pending')->count() }} Pending Comments</span>@endif
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </a>
+                                    <hr>
+                                @endif
+                            @endrole
+                            <!-- {{ ++$i }} -->
+                        @endforeach
+                    </ul>
+                    <!-- {{--
                     <div class="responsive-table">
                         <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0" style="border: thin solid;">
                             <thead>
@@ -47,8 +164,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
-
+                    </div> --}} -->
                 </div>
             </div>
         </div>
