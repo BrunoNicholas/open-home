@@ -43,14 +43,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#tabs-demo6-area3" data-toggle="tab" title="bootsnipp goodies">
+                    <a href="#tabs-demo6-area3" data-toggle="tab" title="{{ config('app.name') }} goodies">
                        	<span class="round-tabs three">
                         	<i class="glyphicon glyphicon-gift"></i>
                       	</span> 
                     </a>
 				</li>
 				<li>
-					<a href="#tabs-demo6-area4" data-toggle="tab" title="blah blah">
+					<a href="#tabs-demo6-area4" data-toggle="tab" title="Communications">
                        	<span class="round-tabs four">
                          	<i class="glyphicon glyphicon-comment"></i>
                        	</span> 
@@ -74,7 +74,7 @@
 	                </p>
 
 	                <p class="text-center">
-	                    <a href="" class="btn btn-success btn-round green"> Report to {{ config('app.name') }} 
+	                    <a href="{{ route('incidents.create') }}" class="btn btn-success btn-round green"> Report to {{ config('app.name') }} 
 	                      	<span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
 	                    </a>
 	                </p>
@@ -94,7 +94,7 @@
 	                    Here you will find your appreciation for taking part in helping out with the problems facing our community as regards to violence.
 	                </p>
 	                <p class="text-center">
-	                	<a href="" class="btn btn-success btn-round green"> start using {{ config('app.name') }} <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+	                	<a href="{{ route('settings') }}" class="btn btn-success btn-round green"> Your {{ config('app.name') }} settings <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
 	                </p>
 	            </div>
 	            <div class="tab-pane fade" id="tabs-demo6-area4">
@@ -103,7 +103,7 @@
 	                    Comments are key to our general cause. You can as well chose to communicate to others through the <a href="{{ route('messages.index','sent') }}">messages</a>.
 					</p>
 	                <p class="text-center">
-	                    <a href="" class="btn btn-success btn-round green"> start using {{ config('app.name') }} <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+	                    <a href="{{ route('messages.create','all') }}" class="btn btn-success btn-round green"> Send personal/public message <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
 	                </p>
 	            </div>
 	            <div class="tab-pane fade" id="tabs-demo6-area5" style="padding: 10px;">
@@ -136,7 +136,7 @@
 	                        <h3>{{ App\Models\Post::where('uploaded_by',Auth::user()->id)->get()->count() }}</h3> <p>Posts</p>
 	                    </div>
                       	<div class="col-md-4 col-sm-4 col-xs-6 padding-0">
-                          	<h3>0</h3> <p>Comments</p>
+                          	<h3>{{ App\Models\Comment::where('responder',Auth::user()->id)->get()->count() }}</h3> <p>Comments</p>
                       	</div>
                       	<div class="col-md-4 col-sm-4 col-xs-12 padding-0">
                           	<h3>0</h3> <p>Credits</p>

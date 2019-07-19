@@ -18,7 +18,6 @@ Route::get('/user', [
 
 Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified','role:super-admin|admin']], function(){
 	Route::resource('/roles', 'RoleController');
-	Route::resource('/users', 'UserController');
 	/*
 	 * closure pages
 	 */
@@ -26,6 +25,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','verified','role:supe
 		'as' 	=> 'admin',
 		'uses'	=> 'AdminPageController@index',
 	]);
+});
+Route::group(['prefix'	=> 'admin', 'middleware'	=> ['auth','verified']], function()
+{
+	Route::resource('/users', 'UserController');
 });
 Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function(){
 	Route::resource('incidents', 'IncidentController');

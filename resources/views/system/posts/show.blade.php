@@ -62,7 +62,7 @@
                                     @if($post->description)
                                         <tr>
                                             <th scope="row">{{ ++$i }}</th>
-                                            <td>Full Names</td>
+                                            <td>Description</td>
                                             <td><textarea class="form-control">{{ $post->description }}</textarea></td>
                                             <td></td>
                                         </tr>
