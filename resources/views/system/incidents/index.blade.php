@@ -55,24 +55,48 @@
                             <tbody>
                                 <?php $i=0; ?>
                                 @foreach($incidents as $incident)
-                                    <tr title="{{ $incident->comments->count() }} Comments">
-                                        <td style="min-width: 65px;">{{ ++$i }} 
-                                            @role(['super-admin','admin']) | <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a>@endrole
-                                        </td>
-                                        <td style="min-width: 150px;"> 
-                                            <a href="{{ route('incidents.show', $incident->id) }}">
-                                                @if($incident->attachement)
-                                                    <img src="{{ asset('files/profile/images/'. $incident->attachement) }}" style="max-width: 25px; border-radius: 10%;">  
-                                                @else <img src="{{ asset('asset/img/logomi.png') }}" style="max-width: 25px; border-radius: 10%;"> @endif
-                                                {{ $incident->title }}
-                                            </a>
-                                        </td>
-                                        <td> {{ App\User::where('id',$incident->user_id)->get()->first()->name }}</td>
-                                        <td> {{ substr($incident->description, 0,40) . '...' }} </td>
-                                        <td> {{ $incident->location }} </td>
-                                        <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->updated_at }}</a> </td>
-                                        <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->created_at }}</a> </td>
-                                    </tr>
+                                    @if(strtolower($incident->status) == 'approved' || Auth::user()->id == $incident->user_id)
+                                        <tr title="{{ $incident->comments->count() }} Comments">
+                                            <td style="min-width: 65px;">{{ ++$i }} 
+                                                @role(['super-admin','admin']) | <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a>@endrole
+                                                <br>
+                                                {{ $incident->status }}
+                                            </td>
+                                            <td style="min-width: 150px;"> 
+                                                <a href="{{ route('incidents.show', $incident->id) }}">
+                                                    @if($incident->attachement)
+                                                        <img src="{{ asset('files/profile/images/'. $incident->attachement) }}" style="max-width: 25px; border-radius: 10%;">  
+                                                    @else <img src="{{ asset('asset/img/logomi.png') }}" style="max-width: 25px; border-radius: 10%;"> @endif
+                                                    {{ $incident->title }}
+                                                </a>
+                                            </td>
+                                            <td> {{ App\User::where('id',$incident->user_id)->get()->first()->name }}</td>
+                                            <td> {{ substr($incident->description, 0,40) . '...' }} </td>
+                                            <td> {{ $incident->location }} </td>
+                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->updated_at }}</a> </td>
+                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->created_at }}</a> </td>
+                                        </tr>
+                                    @endif
+                                    @if(Auth::user()->hasRole(['super-admin','admin']) && Auth::user()->id != $incident->user_id)
+                                        <tr title="{{ $incident->comments->count() }} Comments">
+                                            <td style="min-width: 65px;">{{ ++$i }} 
+                                                @role(['super-admin','admin']) | <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a>@endrole
+                                            </td>
+                                            <td style="min-width: 150px;"> 
+                                                <a href="{{ route('incidents.show', $incident->id) }}">
+                                                    @if($incident->attachement)
+                                                        <img src="{{ asset('files/profile/images/'. $incident->attachement) }}" style="max-width: 25px; border-radius: 10%;">  
+                                                    @else <img src="{{ asset('asset/img/logomi.png') }}" style="max-width: 25px; border-radius: 10%;"> @endif
+                                                    {{ $incident->title }}
+                                                </a>
+                                            </td>
+                                            <td> {{ App\User::where('id',$incident->user_id)->get()->first()->name }}</td>
+                                            <td> {{ substr($incident->description, 0,40) . '...' }} </td>
+                                            <td> {{ $incident->location }} </td>
+                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->updated_at }}</a> </td>
+                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->created_at }}</a> </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
