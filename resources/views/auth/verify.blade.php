@@ -1,5 +1,5 @@
 @extends('layouts.auths')
-@section('title') Create Account @endsection
+@section('title') Verify Account @endsection
 @section('content')
 	<div class="form-signin" style="margin-top: 5%; padding-bottom:190px;">
 		@csrf

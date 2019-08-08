@@ -1,5 +1,8 @@
 @extends('layouts.site')
 @section('title') Incidents @endsection
+@section('styles')
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/css/plugins/datatables.bootstrap.min.css') }}"/>
+@endsection
 @section('content')
 <div class="panel">
 	<div class="panel-body">
@@ -93,8 +96,8 @@
                                             <td> {{ App\User::where('id',$incident->user_id)->get()->first()->name }}</td>
                                             <td> {{ substr($incident->description, 0,40) . '...' }} </td>
                                             <td> {{ $incident->location }} </td>
-                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->updated_at }}</a> </td>
-                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->created_at }}</a> </td>
+                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->updated_at }}<br>{{ $incident->status }}</a> </td>
+                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->created_at }}<br>{{ $incident->status }}</a> </td>
                                         </tr>
                                     @endif
                                 @endforeach
@@ -107,4 +110,13 @@
     </div>
 </div>
 
+@endsection
+@section('scripts')
+    <script src="{{ asset('asset/js/plugins/jquery.datatables.min.js') }}"></script>
+    <script src="{{ asset('asset/js/plugins/datatables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#datatables-example').DataTable();
+        });
+    </script>
 @endsection
