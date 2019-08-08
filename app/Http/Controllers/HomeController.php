@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Incident;
 use App\Models\Role;
 use Auth;
 
@@ -25,10 +26,20 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $incidents = Incident::all();
+        $gpspont = array();
+
+        foreach ($incidents as $val) {
+            array_push($gpspont, explode(' ', $val->location));
+        }
+
+        $gpsponts = json_encode($gpspont);
+
         if (Auth::user()->hasRole(['super-admin','admin'])) {
             return redirect()->route('admin')->with('info','Welcome back, ' . (Role::where('name',Auth::user()->role)->get()->first())->display_name . ' - ' . Auth::user()->name . '!');
         }
-        return view('home')->with('info','Welcome back, ' . ' - ' . Auth::user()->name . '!');
+        $ptNum = sizeof($gpspont);
+        return view('home',compact(['gpsponts','ptNum']))->with('info','Welcome back, ' . ' - ' . Auth::user()->name . '!'); 
     }
     /**
      * Show the application dashboard.
@@ -37,6 +48,15 @@ class HomeController extends Controller
      */
     public function userIndex()
     {
-        return view('home')->with('info','Welcome back, ' . ' - ' . Auth::user()->name . '!');
+        $incidents = Incident::all();
+        $gpspont = array();
+
+        foreach ($incidents as $val) {
+            array_push($gpspont, explode(' ', $val->location));
+        }
+
+        $gpsponts = json_encode($gpspont);
+        $ptNum = sizeof($gpspont);
+        return view('home',compact(['gpsponts','ptNum']))->with('info','Welcome back, ' . ' - ' . Auth::user()->name . '!');
     }
 }

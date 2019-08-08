@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Post;
 use App\Models\Question;
+use App\Models\Incident;
 use App\User;
 
 class Comment extends Model
@@ -15,6 +16,7 @@ class Comment extends Model
      * @var array
      */
     protected $fillable = [
+        'incident_id',
         'post_id',
         'question_id',
         'responder',
@@ -50,6 +52,17 @@ class Comment extends Model
     public function posts()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    /**
+     * Belonds to relationship connects both
+     * the comment to e parent incidents 
+     *
+     */
+
+    public function incidents()
+    {
+        return $this->belongsTo(Incident::class);
     }
 
     /**

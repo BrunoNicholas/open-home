@@ -27,7 +27,7 @@
 <!-- /end of the page description section -->
 <div class="col-md-12" style="padding:10px;">
     <div class="col-md-12 padding-0">
-        <div class="col-md-9 padding-0">
+        <div class="col-md-8 padding-0">
             <div class="panel box-v4">
                 <div class="panel-body">
                     <form action="{{ route('posts.update',$post->id) }}" method="POST" class="tab-wizard wizard-circle">
@@ -102,6 +102,89 @@
                             <button type="submit" class="btn btn-round btn-primary">Update Post</button>
                         </div>                    
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="panel">
+                <div class="panel-body">
+                    <h4 class="panel-title">  Post Operations</h4>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="{{ route('posts.index') }}" class="btn btn-primary btn-rounded btn-block" style="margin: 10px;"> Back </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
+                                        <div class="tools" style="margin: 10px;">
+                                            <button type="submit" class="btn btn-danger btn-rounded btn-block"
+                                                onclick="return confirm('You are about to delete this post!\nThis is not reversible!')" title="You can not delete your profile"> Delete </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        <hr>
+                        </div>
+                        <div class="col-md-12">
+                            <h5 class="card-title">Comments Update</h5>
+                            <div class="row" style="height: 350px; overflow-y: auto;">
+                                <?php $i=0; ?>
+                                @foreach($post->comments as $comm)
+                                    <div class="panel">
+                                        <div class="panel-body" style="border: thin solid #e5e5e5;">
+                                            <div class="col-md-12">
+                                                <form action="{{ route('comments.update', ['post',$post->id,$comm->id]) }}" method="POST">
+                                                    @csrf
+                                                    {{ method_field('PATCH') }}
+                                                    <div class="row">
+                                                        <div class="col-md-6 form-group">
+                                                            <input type="text" name="comment" value="{{ $comm->comment }}" class="form-control">
+                                                        </div>
+                                                        <input type="hidden" name="responder" value="{{ $comm->responder }}">
+                                                        <input type="hidden" name="router" value="posts.edit">
+                                                        <div class="col-md-6 form-group">
+                                                            <select class="custom-select form-control" name="status">
+                                                                <option value="Approved">Approved</option>
+                                                                <option value="Pending">Pending</option>
+                                                                <option value="Under Consideration">Under Consideration</option>
+                                                                <option value="Rejected">Rejected</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12 form-group">
+                                                            <a href="{{ route('comments.edit', ['post',$post->id,$comm->id]) }}" class="label label-info btn-xs btn-rounded">Detailed Edit</a>
+                                                            <button type="submit" class="btn btn-primary btn-xs btn-round" style="min-width: 100px;">Update Comment</button>
+                                                            @if($comm->status == 'Approved')
+                                                                <span class="label label-success btn-xs btn-rounded">{{ $comm->status }}</span>
+                                                            @elseif($comm->status == 'Pending')
+                                                                <span class="label label-primary btn-xs btn-rounded">{{ $comm->status }}</span>
+                                                            @elseif($comm->status == 'Rejected')
+                                                                <span class="label label-danger btn-xs btn-rounded">{{ $comm->status }}</span>
+                                                            @else
+                                                                <span class="label label-warning btn-xs btn-rounded">{{ $comm->status }}</span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                
+                                                <form method="POST" action="{{ route('comments.destroy', ['post',$post->id,$comm->id]) }}">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                    <div class="col-md-12 form-control" style="border: none;">
+                                                        <input type="hidden" name="router" value="posts.edit">
+                                                        <input type="hidden" name="item_val" value="{{ $post->id }}">
+                                                        <button type="submit" class="btn btn-danger btn-round btn-xs" onclick="return confirm('You are about to delete!\nThis is not reversible!')" title="You can not delete your profile" style="min-width: 150px;"> Delete Comment</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- {{ ++$i }} -->
+                                        </div>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

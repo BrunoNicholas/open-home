@@ -149,7 +149,7 @@
                                 <div class="col-md-6">
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <a href="{{ route('roles.index') }}" class="btn btn-sm btn-block btn-danger"> <i class="fa fa-lock"></i> All Users </a>
+                                            <a href="{{ route('roles.index') }}" class="btn btn-sm btn-block btn-danger"> <i class="fa fa-lock"></i> All Roles </a>
                                         </div>
                                         <div class="col-md-6">
                                             <a href="{{ route('roles.create') }}" class="btn btn-sm btn-block btn-primary"> <i class="fa fa-plus"></i> Add New </a>

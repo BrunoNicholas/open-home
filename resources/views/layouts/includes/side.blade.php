@@ -28,8 +28,7 @@
 		        </a>
 		        <ul class="nav nav-list tree">
 		            <li class="@if(route('incidents.index') == Request::fullUrl()) active @endif"><a href="{{ route('incidents.index') }}"> All Incidences </a></li>
-		            <li class="@if(route('incidents.create') == Request::fullUrl()) active @endif"><a href="{{ route('incidents.create') }}"> Report Case </a></li>
-		            <li><a href="javascript:void(0)"> Map of Incidents </a></li>
+		            <li class="@if(route('incidents.create') == Request::fullUrl()) active @endif"><a href="{{ route('incidents.create') }}"> New Incident </a></li>
 		        </ul>
 	        </li>
 	        <li class="ripple @if(route('posts.index') == Request::fullUrl()) active @endif">

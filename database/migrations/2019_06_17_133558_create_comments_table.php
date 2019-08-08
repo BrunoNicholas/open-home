@@ -17,15 +17,16 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->integer('post_id')->nullable()->unsigned()->index();
             $table->integer('question_id')->nullable()->unsigned()->index();
-            // incidents
-            
+            $table->integer('incident_id')->nullable()->unsigned()->index();
             $table->integer('responder')->nullable()->unsigned();
+            
             $table->text('comment');
             $table->string('status')->nullable()->default('Pending');
             $table->timestamps();
 
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->foreign('incident_id')->references('id')->on('incidents')->onDelete('cascade');
             $table->foreign('responder')->references('id')->on('users')->onDelete('cascade');
         });
     }

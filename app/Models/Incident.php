@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Comment;
 
 class Incident extends Model
 {
@@ -27,6 +28,16 @@ class Incident extends Model
      * @var array
      */
     protected $table = 'incidents';
+
+    /**
+     * The relationship method for comments.
+     *
+     * as comments.
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     /**
      * Belonds to relationship connects both 

@@ -1,7 +1,7 @@
 @extends('layouts.auths')
 @section('title') Create Account @endsection
 @section('content')
-	<form class="form-signin" style="margin-top: 5%; padding-bottom:50px;" method="POST" action="{{ route('register') }}">
+	<form class="form-signin" style="margin-top: 5%; padding-bottom:60px;" method="POST" action="{{ route('register') }}">
 		@csrf
 		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>

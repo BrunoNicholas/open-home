@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Question;
 use App\Models\Post;
 use App\Models\Comment;
+use App\Models\Incident;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -25,6 +26,11 @@ class CommentController extends Controller
             $question = Question::find($id);
             $comments   = $question->comments;
             return view('system.comments.index',compact(['comments','type','id']));
+        }
+        elseif ($type == 'incident') {
+            $incident = Incident::find($id);
+            $comments = $incident->comments;
+            return back()->with('success','Successfully with incident!')
         }
 
         $comments = Comment::all();
@@ -61,9 +67,12 @@ class CommentController extends Controller
             elseif ($request->question_id) {
                 return redirect()->route($request->router, $request->question_id)->with('success','Comment added successfully!');
             }
+            elseif ($request->incident_id) {
+                return back()->with('success', 'Comment added to incident successfully!')
+            }
         }
 
-        return redirect()->route('home')->with('success','Comment added successfully!');
+        return redirect()->back()->with('success','Comment added successfully!');
     }
 
     /**
@@ -119,7 +128,7 @@ class CommentController extends Controller
             }
         }
 
-        return redirect()->route('home')->with('success','Comment updated successfully!');
+        return redirect()->back()->with('success','Comment updated successfully!');
     }
 
     /**
@@ -133,6 +142,6 @@ class CommentController extends Controller
         $item = Comment::where('id',$id)->get()->first();
         $item->delete();
 
-        return redirect()->route('home')->with('danger', 'Comment Deleted Successfully');
+        return redirect()->back()->with('danger', 'Comment Deleted Successfully');
     }
 }

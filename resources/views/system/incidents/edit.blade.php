@@ -79,7 +79,11 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="map1">Location <span class="text-danger">*</span> :</label>
-                                        <div class="form-control" id="map1"> </div>
+                                        <button type="button" onclick="getLocation()" class="btn btn-xs btn-info"> <i class="fa fa-locator"></i> Get Current Location</button>
+                                        <button type="button" onclick="cal.location.value=document.getElementById('demo').innerHTML"  class="btn btn-xs btn-info">Use Cordinates</button>
+                                        <p id="demo"></p>
+                                        <input type="text" name="location" class="form-control" value="{{ $incident->location }}" placeholder="Click the two buttons to get location">
+                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -107,8 +111,19 @@
     </div>
 </div>
 
+@endsection
+@section('scripts')
+    <script>
+        var x = document.getElementById("demo");
 
+        function getLocation() {
+          if (navigator.geolocation) { navigator.geolocation.getCurrentPosition(showPosition); } 
+          else { x.innerHTML = "Geolocation is not supported by this browser."; }
+        }
 
-
-
+        function showPosition(position) {
+          x.innerHTML = position.coords.latitude + ' ' + position.coords.longitude;
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDm092t3Kz-SgMCDPib5_cD2GNBnHYnnus"></script>
 @endsection

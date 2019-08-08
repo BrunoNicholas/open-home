@@ -1,8 +1,12 @@
 @extends('layouts.site')
 @section('title') Home @endsection
 @section('styles')
-<link rel = "stylesheet" href = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css"/>
-    	<script src = "http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" 
+    	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" 
+    	crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" 
+    	integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" 
+    	crossorigin=""></script>
 @endsection
 @section('content')
 <div class="panel">
@@ -24,7 +28,7 @@
         </div>
 	</div>                    
 </div>
-
+<?php $remove[] = "'"; $remove[] = '"'; $remove[] = "-";?>
 <div class="col-md-12">
     <div class="col-md-8">
         <div class="col-md-12 tabs-area">
@@ -67,7 +71,7 @@
 	        <div class="tab-content tab-content-v5">
 	            <div class="tab-pane fade in active" id="tabs-demo6-area1">
 					<h3 class="head text-center">Public Activity<sup>™</sup></h3>
-					<div id="map" style="width: 100%; height: 250px"></div>
+					<div id="map" style="width: 100%; height: 300px"></div>
 					<br>
 	                <p class="narrow text-center">
 	                    {{ config('app.name') }} enables you and the general public of Uganda to stand against the high rates of violence of home, gender-based community, school and anywhere by creating awareness of such and cases to the authorities to take action to save many lives homes, families and the entire community.
@@ -150,6 +154,39 @@
 @endsection
 @section('scripts')
 	<script>
+
+		var cities = L.layerGroup();
+
+		regions = {{ str_replace( $remove, "", $gpsponts) }};
+
+		@for ($i = 0; $i<$ptNum; $i++)
+		L.marker(regions[{{ $i }}]).bindPopup('Reported Incident.').addTo(cities)@if($i<($ptNum-1)),
+@else;
+@endif
+		@endfor
+
+		var mbAttr = 'Map data &copy; {{ config('app.name') }}, ' +
+				'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a> ',
+			mbUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+		var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
+			streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+		var map = L.map('map', {
+			center: [1.735574, 32.662354],
+			zoom: 5.5,
+			layers: [grayscale, cities]
+		});
+		var baseLayers = {
+			"Grayscale": grayscale,
+			"Streets": streets
+		};
+		var overlays = {
+			"Cities": cities
+		};
+		L.control.layers(baseLayers, overlays).addTo(map);
+
+	</script>
+	{{--
+	<script>
 		// create current location
 		var latit = 0; var longit = 0;
 
@@ -169,49 +206,5 @@
 
         // Adding layer to the map
         map.addLayer(layer);
-    </script> {{--
-    <script>
-	    var map = L.map('map');
-
-	    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpandmbXliNDBjZWd2M2x6bDk3c2ZtOTkifQ._QA7i5Mpkd_m30IGElHziw', {
-	      maxZoom: 18,
-	      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, ' +
-	        '<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-	        'Imagery © <a href="http://mapbox.com">Mapbox</a>',
-	      id: 'mapbox.streets'
-	    }).addTo(map);
-
-	    // placeholders for the L.marker and L.circle representing user's current position and accuracy    
-	    var current_position, current_accuracy;
-
-	    function onLocationFound(e) {
-		    // if position defined, then remove the existing position marker and accuracy circle from the map
-		    if (current_position) {
-		        map.removeLayer(current_position);
-		        map.removeLayer(current_accuracy);
-		    }
-
-	      var radius = e.accuracy / 2;
-
-	      current_position = L.marker(e.latlng).addTo(map)
-	        .bindPopup("{{ Auth::user()->name }}, You are within " + radius + " meters from this point").openPopup();
-
-	      current_accuracy = L.circle(e.latlng, radius).addTo(map);
-	    }
-
-	    function onLocationError(e) {
-	      alert(e.message);
-	    }
-
-	    map.on('locationfound', onLocationFound);
-	    map.on('locationerror', onLocationError);
-
-	    // wrap map.locate in a function    
-	    function locate() {
-	      map.locate({setView: true, maxZoom: 16});
-	    }
-
-	    // call locate every 3 seconds... forever
-	    setInterval(locate, 3000);
-  	</script> --}}
+    </script> --}}
 @endsection

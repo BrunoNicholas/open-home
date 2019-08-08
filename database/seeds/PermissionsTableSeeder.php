@@ -40,7 +40,7 @@ class PermissionsTableSeeder extends Seeder
         	],
         	[
         		'name'			=> 'delete_user',
-	        	'display_name'	=> 'Can delete user',
+	        	'display_name'	=> 'Can delete a user',
 	        	'description'	=> 'Can delete any user\'s profile',
         	],
         	[

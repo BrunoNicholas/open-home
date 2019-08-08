@@ -25,16 +25,16 @@
 <!-- /end of description section -->
 <div class="col-md-12" style="padding:10px;">
     <div class="col-md-12 padding-0">
-        <div class="col-md-9 padding-0">
+        <div class="col-md-12 padding-0">
             <div class="panel box-v4">
                 <div class="panel-body padding">
                     <div class="responsive-table">
-                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0" style="border: thin solid;">
+                        <table id="datatables-example" class="table table-striped table-bordered" width="100%" cellspacing="0" style="border: thin solid transparent;">
                             <thead>
                                 <tr>
                                     <th>#(Edit)</th>
                                     <th>Title</th>
-                                    <th>Added By</th>
+                                    <th>By</th>
                                     <th>Description</th>
                                     <th>Location</th>
                                     <th>Update</th>
@@ -45,7 +45,7 @@
                                 <tr>
                                     <th># (Edit)</th>
                                     <th>Title</th>
-                                    <th>Added By</th>
+                                    <th>By</th>
                                     <th>Description</th>
                                     <th>Location</th>
                                     <th>Update</th>
@@ -56,7 +56,9 @@
                                 <?php $i=0; ?>
                                 @foreach($incidents as $incident)
                                     <tr>
-                                        <td style="min-width: 50px;">{{ ++$i }} <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a></td>
+                                        <td style="min-width: 65px;">{{ ++$i }} 
+                                            @role(['super-admin','admin']) | <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a>@endrole
+                                        </td>
                                         <td style="min-width: 150px;"> 
                                             <a href="{{ route('incidents.show', $incident->id) }}">
                                                 @if($incident->attachement)
@@ -65,11 +67,11 @@
                                                 {{ $incident->title }}
                                             </a>
                                         </td>
-                                        <td>{{ App\User::where('id',$incident->user_id)->get()->first()->name }}</td>
-                                        <td> {{ $incident->description }} </td>
+                                        <td> {{ App\User::where('id',$incident->user_id)->get()->first()->name }}</td>
+                                        <td> {{ substr($incident->description, 0,40) . '...' }} </td>
                                         <td> {{ $incident->location }} </td>
-                                        <td> {{ $incident->updated_at }} </td>
-                                        <td> {{ $incident->created_at }} </td>
+                                        <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->updated_at }}</a> </td>
+                                        <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->created_at }}</a> </td>
                                     </tr>
                                 @endforeach
                             </tbody>

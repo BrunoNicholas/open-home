@@ -8,6 +8,34 @@ use Illuminate\Http\Request;
 class IncidentController extends Controller
 {
     /**
+     * Display the constructor of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function __construct()
+    {
+        $this->middleware('role:super-admin|admin')->except('index','show','store','create','indexPoints');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function indexPoints()
+    {
+        $incidents = Incident::all();
+        $gpspont = array();
+
+        foreach ($incidents as $val) {
+            array_push($gpspont, explode(' ', $val->location));
+        }
+
+        $gpsponts = json_encode($gpspont);
+        return $gpsponts;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -90,7 +118,7 @@ class IncidentController extends Controller
         ]);
         Incident::find($id)->update($request->all());
 
-        return redirect()->route('incidents.index')->with('success','Incident updated successfully!');
+        return redirect()->route('incidents.show',$id)->with('success','Incident updated successfully!');
     }
 
     /**
@@ -99,10 +127,10 @@ class IncidentController extends Controller
      * @param  \App\Models\Incident  $incident
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Incident $incident)
+    public function destroy($id)
     {
         $item = Incident::find($id);
         $item->delete();
-        return redirect()->route('users.index')->with('danger', 'Incident Deleted Successfully');
+        return redirect()->route('incidents.index')->with('danger', 'Incident Deleted Successfully');
     }
 }
