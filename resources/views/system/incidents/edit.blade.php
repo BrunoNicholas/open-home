@@ -89,16 +89,32 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="decisions1">Attachment (Photo / Video) </label>
+                                        <label for="decisions1">Change Image (Photo / Video) </label>
                                         <input type="file" class="form-control" name="attachement" style="border: none; ">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="radio" name="status" value="approved" id="st1" @if ($incident->status == 'approved')
+                                            checked 
+                                        @endif> <label for="st1">Approved</label>
+                                        <input type="radio" name="status" value="investigation" id="st2" @if ($incident->status == 'investigation')
+                                            checked 
+                                        @endif> <label for="st2">Investigation</label>
+                                        <input type="radio" name="status" value="rejected" id="st3" @if ($incident->status == 'rejected')
+                                            checked 
+                                        @endif> <label for="st3">Rejected</label>
+                                        <input type="radio" name="status" value="pending" id="st4" @if ($incident->status == 'pending')
+                                            checked 
+                                        @endif> <label for="st4">Pending</label>
                                     </div>
                                 </div>
                             </div>
                         </section>
                         <h6 style="width: 100%; text-align: center;">Final</h6>
                         <div div class="col-md-12 text-center">
-                            <a href="{{ route('incidents.index') }}" class="btn btn-round btn-info">Discard</a>
-                            <button type="submit" class="btn btn-round btn-success">Submit Incident</button>
+                            <a href="{{ route('incidents.index') }}" class="btn btn-round btn-info" style="min-width: 200px;">Discard</a>
+                            <button type="submit" class="btn btn-round btn-success" style="min-width: 200px;">Update Incident</button>
                         </div>
                     </form>
                 </div>

@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $incidents = Incident::all();
+        $incidents = Incident::where('status',strtolower('approved'))->get();
         $gpspont = array();
 
         foreach ($incidents as $val) {
@@ -48,7 +48,7 @@ class HomeController extends Controller
      */
     public function userIndex()
     {
-        $incidents = Incident::all();
+        $incidents = Incident::where('status',strtolower('approved'))->get();
         $gpspont = array();
 
         foreach ($incidents as $val) {
