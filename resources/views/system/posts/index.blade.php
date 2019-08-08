@@ -44,7 +44,8 @@
                                         </div>
                                         <div class="col-md-10">
                                             <div class="media-body">
-                                                {{ $question->description }} <br>
+                                                <p>Title: {{ $question->title }}</p>
+                                                <textarea class="form-control" style="height: 100px; border: none;">{{ $question->description }}</textarea> <br>
                                                 <i class="text-info">{{ $question->created_at }}</i>
                                                 @if($question->uploaded_by == Auth::user()->id)
                                                     @if($question->status == 'Approved')

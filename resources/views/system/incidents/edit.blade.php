@@ -28,7 +28,7 @@
 <!-- /end of description section -->
 <div class="col-md-12" style="padding:10px;">
     <div class="col-md-12 padding-0">
-        <div class="col-md-9 padding-0">
+        <div class="col-md-8 padding-0">
             <div class="panel box-v4">
                 <div class="panel-body">
                     <h4 class="card-title"> Edit an incident | {{ config('app.name') }} </h4>
@@ -47,7 +47,7 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <h6 style="width: 100%; text-align: center;">Main Content</h6>
                         <section>
-                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                            <input type="hidden" name="user_id" value="{{ $incident->user_id }}">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -79,11 +79,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="map1">Location <span class="text-danger">*</span> :</label>
-                                        <button type="button" onclick="getLocation()" class="btn btn-xs btn-info"> <i class="fa fa-locator"></i> Get Current Location</button>
-                                        <button type="button" onclick="cal.location.value=document.getElementById('demo').innerHTML"  class="btn btn-xs btn-info">Use Cordinates</button>
-                                        <p id="demo"></p>
                                         <input type="text" name="location" class="form-control" value="{{ $incident->location }}" placeholder="Click the two buttons to get location">
-                                    </div>
                                     </div>
                                 </div>
                             </div>
@@ -105,6 +101,100 @@
                             <button type="submit" class="btn btn-round btn-success">Submit Incident</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div class="panel">
+                <div class="panel-body">
+                    <h4 class="panel-title">  Incident Operations</h4>
+                    <div class="row text-center">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <a href="{{ route('incidents.index') }}" class="btn btn-primary btn-rounded btn-block" style="margin: 10px;"> Back </a>
+                                </div>
+                                <div class="col-md-6">
+                                    <form method="POST" action="{{ route('incidents.destroy', $incident->id) }}">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <div class="tools" style="margin: 10px;">
+                                            <button type="submit" class="btn btn-danger btn-rounded btn-block"
+                                                onclick="return confirm('You are about to delete this incident!\nThis is not reversible!')" title="You can not delete your profile"> Delete </button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        <hr>
+                        </div>
+                        <div class="col-md-12">
+                            <h5 class="card-title">Comments Update</h5>
+                            <div class="row" style="height: 350px; overflow-y: auto;">
+                                <?php $i=0; ?>
+                                @foreach($incident->comments as $comm)
+                                    <div class="panel">
+                                        <div class="panel-body" style="border: thin solid #e5e5e5;">
+                                            <div class="col-md-12">
+                                                <form action="{{ route('comments.update', ['incident',$incident->id,$comm->id]) }}" method="POST">
+                                                    @csrf
+                                                    {{ method_field('PATCH') }}
+                                                    @foreach ($errors->all() as $error)
+                                                        <p class="alert alert-danger">{{ $error }}</p>
+                                                    @endforeach
+
+                                                    @if (session('success'))
+                                                        <div class="alert alert-success">
+                                                            {{ session('success') }}
+                                                        </div>
+                                                    @endif
+                                                    <div class="row">
+                                                        <div class="col-md-6 form-group">
+                                                            <input type="text" name="comment" value="{{ $comm->comment }}" class="form-control">
+                                                        </div>
+                                                        <input type="hidden" name="responder" value="{{ $comm->responder }}">
+                                                        <input type="hidden" name="router" value="incidents.edit">
+                                                        <div class="col-md-6 form-group">
+                                                            <select class="custom-select form-control" name="status">
+                                                                <option value="Approved">Approved</option>
+                                                                <option value="Pending">Pending</option>
+                                                                <option value="Under Consideration">Under Consideration</option>
+                                                                <option value="Rejected">Rejected</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-12 form-group">
+                                                            <a href="{{ route('comments.edit', ['incident',$incident->id,$comm->id]) }}" class="label label-info btn-xs btn-rounded">Detailed Edit</a>
+                                                            <button type="submit" class="btn btn-primary btn-xs btn-round" style="min-width: 100px;">Update Comment</button>
+                                                            @if($comm->status == 'Approved')
+                                                                <span class="label label-success btn-xs btn-rounded">{{ $comm->status }}</span>
+                                                            @elseif($comm->status == 'Pending')
+                                                                <span class="label label-primary btn-xs btn-rounded">{{ $comm->status }}</span>
+                                                            @elseif($comm->status == 'Rejected')
+                                                                <span class="label label-danger btn-xs btn-rounded">{{ $comm->status }}</span>
+                                                            @else
+                                                                <span class="label label-warning btn-xs btn-rounded">{{ $comm->status }}</span>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                
+                                                <form method="POST" action="{{ route('comments.destroy', ['incident',$incident->id,$comm->id]) }}">
+                                                    @csrf
+                                                    {{ method_field('DELETE') }}
+                                                    <div class="col-md-12 form-control" style="border: none;">
+                                                        <input type="hidden" name="router" value="incidents.edit">
+                                                        <input type="hidden" name="item_val" value="{{ $incident->id }}">
+                                                        <button type="submit" class="btn btn-danger btn-round btn-xs" onclick="return confirm('You are about to delete!\nThis is not reversible!')" title="You can not delete your profile" style="min-width: 150px;"> Delete Comment</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <!-- {{ ++$i }} -->
+                                        </div>
+                                    </div>
+                                    <hr>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

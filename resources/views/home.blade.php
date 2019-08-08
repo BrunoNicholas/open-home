@@ -76,7 +76,9 @@
 	                <p class="narrow text-center">
 	                    {{ config('app.name') }} enables you and the general public of Uganda to stand against the high rates of violence of home, gender-based community, school and anywhere by creating awareness of such and cases to the authorities to take action to save many lives homes, families and the entire community.
 	                </p>
-
+	                <p class="narrow text-center">
+	                	The above map shows the submitted Incidents from different locations in the country.
+	                </p>
 	                <p class="text-center">
 	                    <a href="{{ route('incidents.create') }}" class="btn btn-success btn-round green"> Report to {{ config('app.name') }} 
 	                      	<span style="margin-left:10px;" class="glyphicon glyphicon-send"></span>
@@ -106,9 +108,17 @@
 	                <p class="narrow text-center">
 	                    Comments are key to our general cause. You can as well chose to communicate to others through the <a href="{{ route('messages.index','sent') }}">messages</a>.
 					</p>
-	                <p class="text-center">
-	                    <a href="{{ route('messages.create','all') }}" class="btn btn-success btn-round green"> Send personal/public message <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
-	                </p>
+                	<div class="row text-center">
+                		<div class="col-md-3">
+                    		<a href="{{ route('posts.index') }}" class="btn btn-success btn-round green btn-block"> See All Posts <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                		</div>
+                		<div class="col-md-4">
+                    		<a href="{{ route('incidents.index') }}" class="btn btn-success btn-round green btn-block"> See Approved Incidents <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                		</div>
+                		<div class="col-md-4">
+                    		<a href="{{ route('questions.index') }}" class="btn btn-success btn-round green btn-block"> See Asked Questions <span style="margin-left:10px;" class="glyphicon glyphicon-send"></span></a>
+                		</div>
+                	</div>
 	            </div>
 	            <div class="tab-pane fade" id="tabs-demo6-area5" style="padding: 10px;">
 	                <div class="text-center">

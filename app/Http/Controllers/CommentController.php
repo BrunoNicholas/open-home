@@ -30,7 +30,7 @@ class CommentController extends Controller
         elseif ($type == 'incident') {
             $incident = Incident::find($id);
             $comments = $incident->comments;
-            return back()->with('success','Successfully with incident!')
+            return back()->with('success','Successfully with incident!');
         }
 
         $comments = Comment::all();
@@ -68,7 +68,7 @@ class CommentController extends Controller
                 return redirect()->route($request->router, $request->question_id)->with('success','Comment added successfully!');
             }
             elseif ($request->incident_id) {
-                return back()->with('success', 'Comment added to incident successfully!')
+                return back()->with('success', 'Comment added to incident successfully!');
             }
         }
 

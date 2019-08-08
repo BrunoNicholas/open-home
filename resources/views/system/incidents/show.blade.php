@@ -28,7 +28,7 @@
 <!-- /end of description section -->
 <div class="col-md-12" style="padding:10px;">
     <div class="col-md-12 padding-0">
-        <div class="col-md-9 padding-0">
+        <div class="col-md-9 padding">
             <div class="panel box-v4">
                 <div class="panel-body">
                     <h4 class="card-title"> Incident Details | {{ config('app.name') }} </h4>
@@ -106,12 +106,113 @@
                     </div>
                 </div>
             </div>
+            <div class="panel box-v4">
+                <div class="panel-body">
+                    <h4 class="card-title">Comments On This Incident</h4>
+                    <ul class="list-unstyled m-t-40">
+                        <?php $i=0; ?>
+                        @foreach($incident->comments as $comment)
+                            @if($comment->status == 'Approved' || $comment->responder == Auth::user()->id)
+                                @if($i != 0) <hr> @endif
+                                <!-- {{ ++$i }} -->
+                                <li class="media">
+                                    <div class="row">
+                                        <div class="col-md-3 text-center">
+                                            <img class="m-r-15" @if($comment->responder) src="{{ asset('files/profile/images/' . (App\User::where('id',$comment->responder)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
+                                            <h5 class="mt-0 mb-1">@if($comment->responder) {{ (App\User::where('id',$comment->responder)->get()->first())->name }} @else Anonymous @endif </h5>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="media-body">
+                                                {{ $comment->comment }} <br>
+                                                {{ $comment->created_at }}
+                                                @if($comment->responder == Auth::user()->id)
+                                                    @if($comment->status == 'Approved')
+                                                        <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                    @elseif($comment->status == 'Pending')
+                                                        <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                    @elseif($comment->status == 'Rejected')
+                                                        <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                    @else
+                                                        <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                    @endif
+                                                @else
+                                                    @role(['super-admin','admin']) - 
+                                                        @if($comment->status == 'Approved')
+                                                            <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @elseif($comment->status == 'Pending')
+                                                            <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @elseif($comment->status == 'Rejected')
+                                                            <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @else
+                                                            <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @endif 
+                                                    @endrole
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>                                
+                            @endif
+                            @role(['super-admin','admin'])
+                                @if($comment->status != 'Approved' && $comment->responder != Auth::user()->id)
+                                    @if($i != 0) <hr> @endif
+                                    <!-- {{ ++$i }} -->
+                                    <li class="media">
+                                        <div class="row">
+                                            <div class="col-md-3 text-center">
+                                                <img class="m-r-15" @if($comment->responder) src="{{ asset('files/profile/images/' . (App\User::where('id',$comment->responder)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
+                                                <h5 class="mt-0 mb-1">@if($comment->responder) {{ (App\User::where('id',$comment->responder)->get()->first())->name }} @else Anonymous @endif </h5>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="media-body">
+                                                    {{ $comment->comment }} <br>
+                                                    {{ $comment->created_at }} 
+                                                    @role(['super-admin','admin']) - 
+                                                        @if($comment->status == 'Approved')
+                                                            <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @elseif($comment->status == 'Pending')
+                                                            <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @elseif($comment->status == 'Rejected')
+                                                            <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @else
+                                                            <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @endif 
+                                                    @endrole
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                @endif
+                            @endrole
+                        @endforeach
+                        @if(sizeof($incident->comments) < 1) No Comments Yet! @endif
+                    </ul>
+                </div>
+            </div>
+            <div class="panel box-v4">
+                <div class="panel-body">
+                    <h4 class="m-b-20">Add comment</h4>
+                    <form method="post" action="{{ route('comments.store', ['incident',$incident->id]) }}">
+                        @csrf
+                        <input type="hidden" name="incident_id" value="{{ $incident->id }}">
+                        <input type="hidden" name="responder" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="router" value="incidents.show">
+                        <input type="hidden" name="status" value="Pending">
+                        <textarea id="mymce" name="comment" class="form-control" autofocus required></textarea>
+                        <button type="submit" class="m-t-20 btn waves-effect waves-light btn-success">Reply</button>
+                    </form>
+                </div>
+            </div>
         </div>
         <div class="col-md-3">
             <div class="panel box-v4">
                 <div class="panel-body">
                     <h4 class="card-title text-center"> Operations | {{ config('app.name') }} </h4>
                     <h6 class="card-subtitle"></h6>
+                    @role(['super-admin','admin'])
+                        <hr />
+                        <a href="{{ route('incidents.edit', $incident->id) }}" class="btn btn-info btn-block">Edit Incident</a>
+                    @endrole
                     <div class="row text-center">
                         <hr>
                         @role(['super-admin','admin'])

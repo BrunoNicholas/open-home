@@ -55,7 +55,7 @@
                             <tbody>
                                 <?php $i=0; ?>
                                 @foreach($incidents as $incident)
-                                    <tr>
+                                    <tr title="{{ $incident->comments->count() }} Comments">
                                         <td style="min-width: 65px;">{{ ++$i }} 
                                             @role(['super-admin','admin']) | <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a>@endrole
                                         </td>

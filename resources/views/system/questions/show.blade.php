@@ -64,34 +64,40 @@
                                 @if($i != 0) <hr> @endif
                                 <!-- {{ ++$i }} -->
                                 <li class="media">
-                                    <img class="m-r-15" @if($comment->responder) src="{{ asset('files/profile/images/' . (App\User::where('id',$comment->responder)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
-                                    <div class="media-body">
-                                        <h5 class="mt-0 mb-1">@if($comment->responder) {{ (App\User::where('id',$comment->responder)->get()->first())->name }} @else Anonymous @endif </h5> 
-                                        {{ $comment->comment }} <br>
-                                        {{ $comment->created_at }}
-                                        @if($comment->responder == Auth::user()->id)
-                                            @if($comment->status == 'Approved')
-                                                <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
-                                            @elseif($comment->status == 'Pending')
-                                                <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
-                                            @elseif($comment->status == 'Rejected')
-                                                <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
-                                            @else
-                                                <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
-                                            @endif
-                                        @else
-                                            @role(['super-admin','admin']) - 
-                                                @if($comment->status == 'Approved')
-                                                    <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
-                                                @elseif($comment->status == 'Pending')
-                                                    <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
-                                                @elseif($comment->status == 'Rejected')
-                                                    <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
+                                    <div class="row">
+                                        <div class="col-md-3 text-center">
+                                            <img class="m-r-15" @if($comment->responder) src="{{ asset('files/profile/images/' . (App\User::where('id',$comment->responder)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
+                                            <h5 class="mt-0 mb-1">@if($comment->responder) {{ (App\User::where('id',$comment->responder)->get()->first())->name }} @else Anonymous @endif </h5>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <div class="media-body"> 
+                                                {{ $comment->comment }} <br>
+                                                {{ $comment->created_at }}
+                                                @if($comment->responder == Auth::user()->id)
+                                                    @if($comment->status == 'Approved')
+                                                        <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                    @elseif($comment->status == 'Pending')
+                                                        <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                    @elseif($comment->status == 'Rejected')
+                                                        <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                    @else
+                                                        <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                    @endif
                                                 @else
-                                                    <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
-                                                @endif 
-                                            @endrole
-                                        @endif
+                                                    @role(['super-admin','admin']) - 
+                                                        @if($comment->status == 'Approved')
+                                                            <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @elseif($comment->status == 'Pending')
+                                                            <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @elseif($comment->status == 'Rejected')
+                                                            <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @else
+                                                            <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @endif 
+                                                    @endrole
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
                                 </li>                                
                             @endif
@@ -100,22 +106,28 @@
                                     @if($i != 0) <hr> @endif
                                     <!-- {{ ++$i }} -->
                                     <li class="media">
-                                        <img class="m-r-15" @if($comment->responder) src="{{ asset('files/profile/images/' . (App\User::where('id',$comment->responder)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
-                                        <div class="media-body">
-                                            <h5 class="mt-0 mb-1">@if($comment->responder) {{ (App\User::where('id',$comment->responder)->get()->first())->name }} @else Anonymous @endif </h5> 
-                                            {{ $comment->comment }} <br>
-                                            {{ $comment->created_at }} 
-                                            @role(['super-admin','admin']) - 
-                                                @if($comment->status == 'Approved')
-                                                    <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
-                                                @elseif($comment->status == 'Pending')
-                                                    <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
-                                                @elseif($comment->status == 'Rejected')
-                                                    <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
-                                                @else
-                                                    <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
-                                                @endif 
-                                            @endrole
+                                        <div class="row">
+                                            <div class="col-md-3 text-center">
+                                                <img class="m-r-15" @if($comment->responder) src="{{ asset('files/profile/images/' . (App\User::where('id',$comment->responder)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
+                                                <h5 class="mt-0 mb-1">@if($comment->responder) {{ (App\User::where('id',$comment->responder)->get()->first())->name }} @else Anonymous @endif </h5>
+                                            </div>
+                                            <div class="col-md-9">
+                                                <div class="media-body">
+                                                    {{ $comment->comment }} <br>
+                                                    {{ $comment->created_at }} 
+                                                    @role(['super-admin','admin']) - 
+                                                        @if($comment->status == 'Approved')
+                                                            <span class="label label-success btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @elseif($comment->status == 'Pending')
+                                                            <span class="label label-primary btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @elseif($comment->status == 'Rejected')
+                                                            <span class="label label-danger btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @else
+                                                            <span class="label label-warning btn-xs btn-rounded">{{ $comment->status }}</span>
+                                                        @endif 
+                                                    @endrole
+                                                </div>
+                                            </div>
                                         </div>
                                     </li>
                                 @endif
