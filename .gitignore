@@ -15,3 +15,5 @@ yarn-error.log
 /public/files/posts/*
 *.zip
 open-home.zip
+/open-home.zip
+./open-home.zip
