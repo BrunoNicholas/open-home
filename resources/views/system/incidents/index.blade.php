@@ -63,7 +63,7 @@
                                             <td style="min-width: 65px;">{{ ++$i }} 
                                                 @role(['super-admin','admin']) | <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a>@endrole
                                                 <br>
-                                                {{ $incident->status }}
+                                                @if(Auth::user()->id == $incident->user_id){{ $incident->status }}@endif
                                             </td>
                                             <td style="min-width: 150px;"> 
                                                 <a href="{{ route('incidents.show', $incident->id) }}">
