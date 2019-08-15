@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'http://open-home.000webhostapp.com/'),
 
     'asset_url' => env('ASSET_URL', null),
 
@@ -119,7 +119,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY', base64_decode('THIS_IS_MY_KEY')),
+    'key' => env('APP_KEY', base64_decode('ryaImWmDs5rX+bfNbc3PpEYOh4RbB4vR7TPbuIJWXNs=')),
 
     'cipher' => 'AES-256-CBC',
 
