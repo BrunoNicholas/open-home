@@ -1,7 +1,7 @@
 @extends('layouts.auths')
 @section('title') Verify Account @endsection
 @section('content')
-	<div class="form-signin" style="margin-top: 5%; padding-bottom:190px;">
+	<div class="form-signin" style="margin-top: 5%; padding-bottom:200px;">
 		@csrf
 		@foreach ($errors->all() as $error)
             <p class="alert alert-danger">{{ $error }}</p>

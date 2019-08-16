@@ -190,9 +190,16 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label class="col-md-12">Your Church (Ministry) </label>
+                                            <label class="col-md-12"> Marriage Status </label>
                                             <div class="col-md-12">
-                                                <input type="text" placeholder="Church submitted to" name="church" class="form-control form-control-line" value="{{ $user->church }}">
+                                                <select name="maritual_status" class="form-control form-control-line" id="location5">
+		                                            <option value="{{ $user->maritual_status }}">Select marital status</option>
+		                                            <option value="Sinage">Sinage</option>
+		                                            <option value="Courting">Courting</option>
+		                                            <option value="Married">Married</option>
+		                                            <option value="Devorced">Devorced</option>
+		                                            <option value="Confidential">Confidential</option>
+		                                        </select>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -212,18 +219,6 @@
                                             <label class="col-md-12">Occupation </label>
                                             <div class="col-md-12">
                                                 <input type="text" placeholder="What you do for a living" name="occupation" class="form-control form-control-line" value="{{ $user->occupation }}">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-12">Year Enrolled (UTAMU Student) </label>
-                                            <div class="col-md-12">
-                                                <input type="year" placeholder="The year you joined campus" name="year_enrolled" class="form-control form-control-line" value="{{ $user->year_enrolled }}" >
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-md-12">Expected Graduation Year </label>
-                                            <div class="col-md-12">
-                                                <input type="text" placeholder="The year you expect to leave campus" name="unenrollment_year" class="form-control form-control-line" value="{{ $user->unenrollment_year }}">
                                             </div>
                                         </div>
                                         <div class="form-group">

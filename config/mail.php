@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Mail Driver
@@ -15,9 +13,7 @@ return [
     |            "sparkpost", "log", "array"
     |
     */
-
     'driver' => env('MAIL_DRIVER', 'smtp'),
-
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Address
@@ -28,9 +24,7 @@ return [
     | the Mailgun mail service which will provide reliable deliveries.
     |
     */
-
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-
+    'host' => env('MAIL_HOST', 'ssl://smtp.googlemail.com'),
     /*
     |--------------------------------------------------------------------------
     | SMTP Host Port
@@ -41,9 +35,7 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
-
-    'port' => env('MAIL_PORT', 587),
-
+    'port' => env('MAIL_PORT', 465),
     /*
     |--------------------------------------------------------------------------
     | Global "From" Address
@@ -54,12 +46,10 @@ return [
     | used globally for all e-mails that are sent by your application.
     |
     */
-
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => 'henrykiganda6@gmail.com',
+        'name' => 'Open Home',
     ],
-
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol
@@ -70,9 +60,7 @@ return [
     | transport layer security protocol should provide great security.
     |
     */
-
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-
+    'encryption' => env('ssl'),
     /*
     |--------------------------------------------------------------------------
     | SMTP Server Username
@@ -83,11 +71,8 @@ return [
     | connection. You may also set the "password" value below this one.
     |
     */
-
-    'username' => env('MAIL_USERNAME'),
-
-    'password' => env('MAIL_PASSWORD'),
-
+    'username' => env('MAIL_USERNAME','henrykiganda6@gmail.com'),
+    'password' => env('MAIL_PASSWORD','hkgwccoezgtucabd'),
     /*
     |--------------------------------------------------------------------------
     | Sendmail System Path
@@ -98,9 +83,7 @@ return [
     | been provided here, which will work well on most of your systems.
     |
     */
-
     'sendmail' => '/usr/sbin/sendmail -bs',
-
     /*
     |--------------------------------------------------------------------------
     | Markdown Mail Settings
@@ -111,15 +94,12 @@ return [
     | of the emails. Or, you may simply stick with the Laravel defaults!
     |
     */
-
     'markdown' => [
         'theme' => 'default',
-
         'paths' => [
             resource_path('views/vendor/mail'),
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Log Channel
@@ -130,7 +110,5 @@ return [
     | for simpler reading. Otherwise, the default channel will be used.
     |
     */
-
     'log_channel' => env('MAIL_LOG_CHANNEL'),
-
 ];
