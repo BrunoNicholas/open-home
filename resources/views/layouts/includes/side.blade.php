@@ -82,7 +82,7 @@
 		        <ul class="nav nav-list tree">
 		        	<li class="@if(route('comments.index',['all',0]) == Request::fullUrl()) active @endif"><a href="{{ route('comments.index',['all',0]) }}">My Comments</a></li>
 		            <li class="@if(route('profile') == Request::fullUrl()) active @endif"><a href="{{ route('profile') }}"> My Profile </a></li>
-		            <li class="@if(route('settings') == Request::fullUrl()) active @endif"><a href="{{ route('settings') }}"> My Settings </a></li>
+		            {{--- <li class="@if(route('settings') == Request::fullUrl()) active @endif"><a href="{{ route('settings') }}"> My Settings </a></li> --}}
 		        </ul>
 	        </li>
 	        <li class="text-center">
