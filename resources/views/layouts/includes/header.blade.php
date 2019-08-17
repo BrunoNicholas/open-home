@@ -34,17 +34,14 @@
              <li role="separator" class="divider"></li>
              <li class="more" style="min-width: 200px; height: 50px;">
               <ul>
-                <div class="row">
-                  <div class="col-md-6">
-                    <li><a href="{{ route('settings') }}"><span class="fa fa-cogs prof-icons" style="font-size: 25px;"></span></a></li>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <li style="width: 100%; text-align: center;">
+                              <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="fa fa-power-off prof-icons" style="font-size: 25px;" ></span></a>
+                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
+                          </li>
+                      </div>
                   </div>
-                  <div class="col-md-6">
-                    <li>
-                      <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><span class="fa fa-power-off prof-icons" style="font-size: 25px;" ></span></a>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
-                    </li>
-                  </div>
-                </div>
                 
               </ul>
             </li>
