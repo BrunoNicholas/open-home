@@ -40,21 +40,10 @@
                                     <th>By</th>
                                     <th>Description</th>
                                     <th>Location</th>
-                                    <th>Update</th>
+                                    <th>Comments</th>
                                     <th>Created</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th># (Edit)</th>
-                                    <th>Title</th>
-                                    <th>By</th>
-                                    <th>Description</th>
-                                    <th>Location</th>
-                                    <th>Update</th>
-                                    <th>Created</th>
-                                </tr>                                
-                            </tfoot>
                             <tbody>
                                 <?php $i=0; ?>
                                 @foreach($incidents as $incident)
@@ -76,11 +65,11 @@
                                             <td> {{ App\User::where('id',$incident->user_id)->get()->first()->name }}</td>
                                             <td> {{ substr($incident->description, 0,40) . '...' }} </td>
                                             <td> {{ $incident->location }} </td>
-                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->updated_at }}</a> </td>
+                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->comments->count() }} Comments</a> </td>
                                             <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->created_at }}</a> </td>
                                         </tr>
                                     @endif
-                                    @if(Auth::user()->hasRole(['super-admin','admin']) && Auth::user()->id != $incident->user_id)
+                                    @if(Auth::user()->hasRole(['super-admin','admin']) && Auth::user()->id != $incident->user_id && strtolower($incident->status) != 'approved')
                                         <tr title="{{ $incident->comments->count() }} Comments">
                                             <td style="min-width: 65px;">{{ ++$i }} 
                                                 @role(['super-admin','admin']) | <a href="{{ route('incidents.edit',$incident->id) }}"><i class="fa-edit fa"></i></a>@endrole
@@ -96,7 +85,7 @@
                                             <td> {{ App\User::where('id',$incident->user_id)->get()->first()->name }}</td>
                                             <td> {{ substr($incident->description, 0,40) . '...' }} </td>
                                             <td> {{ $incident->location }} </td>
-                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->updated_at }}<br>{{ $incident->status }}</a> </td>
+                                            <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->comments->count() }} Comments<br>{{ $incident->status }}</a> </td>
                                             <td> <a href="{{ route('incidents.show',$incident->id) }}">{{ $incident->created_at }}<br>{{ $incident->status }}</a> </td>
                                         </tr>
                                     @endif
