@@ -36,7 +36,6 @@
             <!-- start:Left Menu -->
             @include('layouts.includes.side')
             <!-- end: Left Menu -->
-
             <!-- start: content -->
             <div id="content">
                 @yield('content')
@@ -48,7 +47,6 @@
             @endpermission
             <!-- end: right menu -->
         </div>
-
         <!-- start: Mobile -->
         @include('layouts.includes.mob_side')
         <button id="mimin-mobile-menu-opener" class="animated rubberBand btn btn-circle btn-danger">

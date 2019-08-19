@@ -86,7 +86,7 @@
 		        </ul>
 	        </li>
 	        <li class="text-center">
-	        	<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="fa fa-power-off"></i> Logout </a>
+	        	<a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="fa fa-power-off"></i> Logout </a>
 	        	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
 	        </li>
         	<!-- <li><a href="">Credits</a></li> -->
