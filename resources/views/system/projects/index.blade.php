@@ -5,7 +5,7 @@
 	<div class="panel-body">
 	      <div class="col-md-6 col-sm-12">
 	        <h3 class="animated fadeInLeft"> Projects | {{ config('app.name') }} </h3>
-	        <p>See the on going and other projects! <a href="{{ route('projects.create') }}" class="label label-warning btn-round"> <i class="fa-plus fa"></i> New Project </a> </p>
+	        <p>See the on going and other projects! <!--<a href="{{ route('projects.create') }}" class="label label-warning btn-round"> <i class="fa-plus fa"></i> New Project </a> --></p>
 	    </div>
 	    <div class="col-7 align-self-center pull-right">
             <div class="d-flex no-block justify-content-end align-items-center">
