@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class ReferenceController extends Controller
 {
     /**
+     * Display the constructor of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function __construct()
+    {
+        $this->middleware('role:super-admin|admin|editor|lawyer')->except('index','show');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -35,7 +45,15 @@ class ReferenceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'user_id'   => 'required',
+            'topic'     => 'required',
+            'status' => 'required',
+
+        ]);
+        Reference::create($request->all());
+
+        return back()->with('success','Reference added successfully!');
     }
 
     /**
@@ -44,7 +62,7 @@ class ReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function show(Reference $reference)
+    public function show($id)
     {
         //
     }
@@ -55,7 +73,7 @@ class ReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reference $reference)
+    public function edit($id)
     {
         //
     }
@@ -67,9 +85,17 @@ class ReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reference $reference)
+    public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'user_id'   => 'required',
+            'topic'     => 'required',
+            'status' => 'required',
+
+        ]);
+        Reference::find($id)->update($request->all());
+
+        return back()->with('success','Role Updated Successfully');
     }
 
     /**
@@ -78,8 +104,11 @@ class ReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reference $reference)
+    public function destroy($id)
     {
-        //
+        $item = Reference::find($id);
+        $item->delete();
+
+        return redirect()->route('departments.index')->with('danger', 'Department deleted successfully');
     }
 }
