@@ -43,7 +43,7 @@ class ReferenceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $depId=null)
     {
         request()->validate([
             'user_id'   => 'required',
@@ -85,7 +85,7 @@ class ReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id, $depId=null)
     {
         request()->validate([
             'user_id'   => 'required',
@@ -104,7 +104,7 @@ class ReferenceController extends Controller
      * @param  \App\Models\Reference  $reference
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, $depId=null)
     {
         $item = Reference::find($id);
         $item->delete();

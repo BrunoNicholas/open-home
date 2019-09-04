@@ -114,33 +114,28 @@
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
                                     <div class="tools">
-                                        <button type="submit" class="btn btn-danger btn-rounded btn-block"
-                                            @if(Auth::user()->role != 'super-admin') disabled @endif onclick="return confirm('You are about to delete this department!\nThis is not reversible!')"> Delete </button>
+                                        <button type="submit" class="btn btn-danger btn-rounded btn-block" onclick="return confirm('You are about to delete this department!\nThis is not reversible!')"> Delete </button>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="col-md-12" style="padding: 5%;">
+                                <button type="submit" class="btn btn-info btn-round btn-block">Add Reference</button>
                             </div>
                             @endrole
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">@role(['super-admin','admin'])
+            <div class="col-md-12">
                 <div class="panel">
                     <div class="panel-body">
-                        <h4 class="panel-title">  Department Operations</h4>
+                        <h4 class="panel-title">  Department Reference Information </h4>
                         <hr>
                         <div class="row text-center">
-                            <div class="col-md-6">
-                                <a href="{{ route('departments.index') }}" class="btn btn-primary btn-rounded btn-block" style=""> Back </a>
-                            </div>
-                            @role(['super-admin','admin'])
-                            <div class="col-md-6">
+                            
 
 
 
-
-
-                            </div>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,8 @@
 @extends('layouts.site')
 @section('title') Departments @endsection
+@section('styles')
+<link rel="stylesheet" type="text/css" href="{{ asset('asset/css/plugins/datatables.bootstrap.min.css') }}"/>
+@endsection
 @section('content')
 <div class="panel">
 	<div class="panel-body">
@@ -25,11 +28,11 @@
 <!-- /end of description section -->
 <div class="col-md-12" style="padding:10px;">
     <div class="col-md-12 padding-0">
-        <div class="col-md-9 padding-0">
+        <div class="col-md-12 padding-0">
             <div class="panel box-v4">
                 <div class="panel-body">
                     <div class="table-responsive">
-                        <table id="file_export" class="table table-striped table-bordered display">
+                        <table id="datatables-example" class="table table-striped table-bordered display">
                             <thead>
                                 <tr class="text-center">
                                     <th>#</th>
@@ -94,9 +97,13 @@
         </div>
     </div>
 </div>
-
-
-
-
-
+@endsection
+@section('scripts')
+    <script src="{{ asset('asset/js/plugins/jquery.datatables.min.js') }}"></script>
+    <script src="{{ asset('asset/js/plugins/datatables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#datatables-example').DataTable();
+        });
+    </script>
 @endsection
