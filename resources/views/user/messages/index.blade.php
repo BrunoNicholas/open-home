@@ -8,7 +8,7 @@
 		<div class="panel-body">
 		      <div class="col-md-6 col-sm-12">
 		        <h3 class="animated fadeInLeft"> Messages | {{ config('app.name') }} </h3>
-		        <p> Send a message to anyone in the system or to all! </p>
+		        <p> Send and review messages to anyone ! </p>
 		    </div>
 		    <div class="col-7 align-self-center pull-right">
 	            <div class="d-flex no-block justify-content-end align-items-center">
