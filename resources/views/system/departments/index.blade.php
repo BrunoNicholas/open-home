@@ -41,7 +41,7 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                            <tfoot>
+                           <!-- <tfoot>
                                 <tr class="text-center">
                                     <th>#</th>
                                     <th>Name</th>

@@ -38,7 +38,7 @@
 		        </a>
 		        <ul class="nav nav-list tree">
 		            <li class="@if(route('posts.index') == Request::fullUrl()) active @endif"><a href="{{ route('posts.index') }}"> All Posts </a></li>
-		            <li class="@if(route('posts.create') == Request::fullUrl()) active @endif"><a href="{{ route('posts.create') }}"> Add Post </a></li>
+		            @role(['super-admin','admin'])<li class="@if(route('posts.create') == Request::fullUrl()) active @endif"><a href="{{ route('posts.create') }}"> Add Post </a></li>@endrole
 		        </ul>
 	        </li>
 	        <li class="ripple @if(route('questions.index') == Request::fullUrl() || route('questions.create') == Request::fullUrl()) active @endif">
@@ -51,6 +51,7 @@
 		            <li class="@if(route('questions.create') == Request::fullUrl()) active @endif"><a href="{{ route('questions.create') }}"> Ask One </a></li>
 		        </ul>
 	        </li>
+	        @role(['super-admin','admin'])
 	        <li class="ripple @if(route('reports.index') == Request::fullUrl()) active @endif">
 	        	<a class="tree-toggle nav-header">
 	        		<span class="fa fa-check-square-o"></span> Reports  
@@ -61,6 +62,7 @@
 		            <li class="@if(route('reports.index') == Request::fullUrl()) active @endif"><a href="{{ route('reports.create') }}"> Add New </a></li>
 		        </ul>
 	        </li>
+	        @endrole
 	        <li class="ripple @if(route('projects.index') == Request::fullUrl() || route('departments.index') == Request::fullUrl()) active @endif">
 	        	<a class="tree-toggle nav-header">
 	        		<span class="fa fa-gear"></span> Management
@@ -80,11 +82,11 @@
 		        <ul class="nav nav-list tree">
 		        	<li class="@if(route('comments.index',['all',0]) == Request::fullUrl()) active @endif"><a href="{{ route('comments.index',['all',0]) }}">My Comments</a></li>
 		            <li class="@if(route('profile') == Request::fullUrl()) active @endif"><a href="{{ route('profile') }}"> My Profile </a></li>
-		            <li class="@if(route('settings') == Request::fullUrl()) active @endif"><a href="{{ route('settings') }}"> My Settings </a></li>
+		            {{--- <li class="@if(route('settings') == Request::fullUrl()) active @endif"><a href="{{ route('settings') }}"> My Settings </a></li> --}}
 		        </ul>
 	        </li>
 	        <li class="text-center">
-	        	<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="fa fa-power-off"></i> Logout </a>
+	        	<a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i class="fa fa-power-off"></i> Logout </a>
 	        	<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
 	        </li>
         	<!-- <li><a href="">Credits</a></li> -->
