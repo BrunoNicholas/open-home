@@ -21,7 +21,7 @@ class CreateReferencesTable extends Migration
             $table->string('item')->nullable();
             $table->string('attachment')->nullable();
             $table->text('description')->nullable();
-            $table->string('status')->->default('pending');
+            $table->string('status')->default('pending');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

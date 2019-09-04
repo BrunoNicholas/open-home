@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Reference;
 use App\User;
 
 class Department extends Model
@@ -35,5 +36,10 @@ class Department extends Model
     public function users()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function references()
+    {
+        return $this->hasMany(Reference::class);
     }
 }
