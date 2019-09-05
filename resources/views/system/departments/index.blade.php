@@ -44,17 +44,6 @@
                                     <th>Actions</th>
                                 </tr>
                             </thead>
-                           <!-- <tfoot>
-                                <tr class="text-center">
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Main Department</th>
-                                    <th>Description</th>
-                                    <th>Created By</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </tfoot>
                             <!-- <?php $i=0; ?> -->
                             <tbody>
                                 @foreach($departments as $department)

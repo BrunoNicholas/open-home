@@ -185,10 +185,54 @@
                         <h4 class="panel-title">  Department Reference Information </h4>
                         <hr>
                         <div class="row text-center">
-                            
+                            <table id="datatables-example" class="table table-striped table-bordered display">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th>#</th>
+                                        <th>Topic</th>
+                                        <th>Description</th>
+                                        <th>Link</th>
+                                        <th>Attachment</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <!-- <?php $i=0; ?> -->
+                                <tbody>
+                                    @foreach($references as $reference)
+                                        <tr>
+                                            <td>{{ ++$i }}</td>
+                                            <td><textarea class="form-control" style="border: none;">{{ $reference->topic }}</textarea></td>
+                                            <td><textarea class="form-control" style="border: none;">{{ $reference->description }}</textarea></td>
+                                            <td><a href="{{ $reference->item }}"><button class="btn btn-xs btn-info">View Link</button></a></td>
+                                            <td><a href="{{ $reference->attachment }}">View Attachment</button></a></td>
+                                            <td class="text-center">
+                                                @if($department->status == 'Active')
+                                                    <span class="btn-xs btn-round label label-success">{{ $department->status }}</span>
+                                                @elseif($department->status == 'Suspended')
+                                                    <span class="btn-xs btn-round label label-warning">{{ $department->status }}</span>
+                                                @elseif($department->status == 'Blocked')
+                                                    <span class="btn-xs btn-round label label-primary">{{ $department->status }}</span>
+                                                @elseif($department->status == 'Removed')
+                                                    <span class="btn-xs btn-round label label-info">{{ $department->status }}</span>
+                                                @else
+                                                    <span class="btn-xs btn-round label label-default">{{ $department->status }}</span>
+                                                @endif
+                                            </td>
+                                            <td class="text-center">
+                                                <form method="POST" action="{{ route('references.destroy', [$reference->id,$department->id]) }}">
+                                                    {{ csrf_field() }}
+                                                    {{ method_field('DELETE') }}
+                                                    <div class="tools">
+                                                        <button type="submit" class="btn btn-danger btn-rounded btn-block" onclick="return confirm('You are about to delete this reference!\nThis is not reversible!')"> Delete </button>
+                                                    </div>
+                                                </form>
+                                            </td>
+                                        </tr>
 
-
-
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
