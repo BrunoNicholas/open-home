@@ -119,7 +119,60 @@
                                 </form>
                             </div>
                             <div class="col-md-12" style="padding: 5%;">
-                                <button type="submit" class="btn btn-info btn-round btn-block">Add Reference</button>
+                                <button type="button" class="btn btn-info btn-round btn-block" data-toggle="modal" data-target="#exampleModal">Add Reference</button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <form action="{{ route('references.store',$department->id) }}" method="POST">
+                                                @csrf
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">
+                                                        Add Reference to the {{ $department->name }} 
+                                                        <button type="button" class="close float-right pull-right" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </h5>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row text-left">
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Reference Topic</label>
+                                                                <input type="text" name="topic" placeholder="Enter the topic of this reference" class="form-control" required autofocus>
+                                                            </div>
+                                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                            <input type="hidden" name="department_id" value="{{ $department->id }}">
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Add item (Link to visuals, websites and more)</label>
+                                                                <input type="text" name="item" placeholder="Enter the link to necessary information" class="form-control">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Upload Content</label>
+                                                                <input type="file" name="attachment" class="form-control">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-md-12">
+                                                            <div class="form-group">
+                                                                <label>Add item (Link to visuals, websites and more)</label>
+                                                                <textarea name="description" placeholder="Enter the details for the description above" class="form-control"></textarea>
+                                                            </div>
+                                                            <input type="hidden" name="status" value="pending">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Add Reference</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                      </div>
+                                    </div>
                             </div>
                             @endrole
                         </div>
