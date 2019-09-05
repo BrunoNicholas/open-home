@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Reference;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -67,10 +68,11 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $department = Department::find($id);
+        $references = Reference::where('department_id', $id);
         if (!$department) {
             return redirect()->route('departments.index')->with('danger', 'Department Not Found!');
         }
-        return view('system.departments.show', compact(['department']));
+        return view('system.departments.show', compact(['department','references']));
     }
 
     /**

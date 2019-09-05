@@ -102,7 +102,7 @@
             <div class="col-md-4 text-center">
                 <div class="panel">
                     <div class="panel-body">
-                        <h4 class="panel-title">  Department Operations</h4>
+                        <h4 class="panel-title">  Department Operations <br> <small><span>{{ $department->references->count() }} References</span></small></h4>
                         <hr>
                         <div class="row text-center">
                             <div class="col-md-6">
@@ -171,8 +171,8 @@
                                                 </div>
                                             </form>
                                         </div>
-                                      </div>
                                     </div>
+                                </div>
                             </div>
                             @endrole
                         </div>
