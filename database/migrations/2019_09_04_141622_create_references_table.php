@@ -17,7 +17,7 @@ class CreateReferencesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('department_id')->unsigned();
-            $table->string('topic');
+            $table->text('topic');
             $table->string('item')->nullable();
             $table->string('attachment')->nullable();
             $table->text('description')->nullable();

@@ -109,6 +109,6 @@ class ReferenceController extends Controller
         $item = Reference::find($id);
         $item->delete();
 
-        return redirect()->route('departments.index')->with('danger', 'Department deleted successfully');
+        return back()->with('danger', 'Department reference deleted successfully!');
     }
 }
