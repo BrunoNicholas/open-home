@@ -43,7 +43,7 @@
 </head>
 <body class="text-white">
 	<header>
-		<h2><big>Welcome To The Open Home Software</big><br><small><i>Your School Partner!</i></small></h2>
+		<h2><big>Welcome To The Open Home Software</big><br><small><i>A violence free community!</i></small></h2>
 	</header>
 	<section class="container">
 		<div class="row">
