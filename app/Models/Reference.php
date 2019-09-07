@@ -1,12 +1,12 @@
 <?php
 
 namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-use App\Models\Reference;
+use App\Models\Department;
 use App\User;
 
-class Department extends Model
+use Illuminate\Database\Eloquent\Model;
+
+class Reference extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -14,11 +14,13 @@ class Department extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
-        'created_by',
-        'parent_department',
+        'user_id',
+        'topic',
+        'item',
+        'attachment',
         'description',
-        'status',
+        'department_id',
+        'status'
     ];
 
     /**
@@ -26,7 +28,17 @@ class Department extends Model
      *
      * @var array
      */
-    protected $table = 'departments';
+    protected $table = 'references';
+    
+    /**
+     * Belonds to relationship connects both 
+     * the department table and the departments table
+     *
+     */
+    public function departments()
+    {
+        return $this->belongsTo(Department::class);
+    }
     
     /**
      * Belonds to relationship connects both 
@@ -36,10 +48,5 @@ class Department extends Model
     public function users()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function references()
-    {
-        return $this->hasMany(Reference::class);
     }
 }

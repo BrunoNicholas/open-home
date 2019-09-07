@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Department;
+use App\Models\Reference;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -55,7 +56,7 @@ class DepartmentController extends Controller
         ]);
         Department::create($request->all());
 
-        return redirect()->route('departments.index')->with('success','Fellowship Department Created Successfully');
+        return redirect()->route('departments.index')->with('success',config('app.name') .' department saved successfully!');
     }
 
     /**
@@ -67,10 +68,11 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $department = Department::find($id);
+        $references = Reference::where('department_id', $id)->get();
         if (!$department) {
             return redirect()->route('departments.index')->with('danger', 'Department Not Found!');
         }
-        return view('system.departments.show', compact(['department']));
+        return view('system.departments.show', compact(['department','references']));
     }
 
     /**
@@ -105,7 +107,7 @@ class DepartmentController extends Controller
         ]);
         Department::find($id)->update($request->all());
 
-        return redirect()->route('departments.index')->with('success','Role Updated Successfully');
+        return redirect()->route('departments.index')->with('success',config('app.name') .' department updated successfully!');
     }
 
     /**
@@ -116,9 +118,9 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        $department = Department::find($id);
-        $department->delete();
+        $item = Department::find($id);
+        $item->delete();
 
-        return redirect()->route('departments.index')->with('danger', 'Department Deleted Successfully');
+        return redirect()->route('departments.index')->with('danger', 'Department deleted successfully');
     }
 }

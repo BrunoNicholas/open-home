@@ -5,13 +5,13 @@
 	<meta charset="utf-8">
 	<meta name="Author" content="Bruno Nicholas Sserunkuma">
 	<meta name="email" content="sbnibro256@gmail.com">
-	<link rel="stylesheet" type="text/css" href="./public/asset/plugins/bootstrap/css/bootstrap.min.css">
-    <link rel="shortcut icon" href="./public/assets/img/favicon.jpg">
+	<link rel="stylesheet" type="text/css" href="public/asset/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="public/asset/img/logomi.png">
 	<style type="text/css">
 		body {
-			background-image: url("./public/assets/img/photo4.jpg"); 
+			background-image: url("public/asset/img/bg4.jpg"); 
 			background-repeat: no-repeat;
-			text-shadow: 2px 2px blue;
+			text-shadow: 1px 1px blue;
 		}
 		header, section, footer {
 			min-height: 150px;
@@ -25,7 +25,10 @@
 			text-transform: uppercase;
 		}
 		a, small {
-			text-shadow: none;
+			padding: 5px 10px;
+			border-radius: 3px;
+			background-color: white;
+			/* text-shadow: none; */
 		}
 		@media only screen and (max-width: 600px){
 			.namer {
@@ -40,7 +43,7 @@
 </head>
 <body class="text-white">
 	<header>
-		<h2><big>Welcome To The Open Home Software<br><small><i>Your School Partner!</i></small></h2>
+		<h2><big>Welcome To The Open Home Software</big><br><small><i>A violence free community!</i></small></h2>
 	</header>
 	<section class="container">
 		<div class="row">

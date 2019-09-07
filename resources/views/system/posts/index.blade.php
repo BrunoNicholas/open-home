@@ -5,7 +5,7 @@
 	<div class="panel-body">
 	      <div class="col-md-6 col-sm-12">
 	        <h3 class="animated fadeInLeft"> Posts | {{ config('app.name') }} </h3>
-	        <p>See the on going and other posts! <!--<a href="{{ route('posts.create') }}" class="btn btn-xs btn-warning btn-round"><i class="fa fa-plus"></i> Add New</a> ---></p>
+	        <p>See the on going and other posts! @role(['super-admin','admin'])<a href="{{ route('posts.create') }}" class="btn btn-xs btn-warning btn-round"><i class="fa fa-plus"></i> Add New</a> @endrole</p>
 	    </div>
 	    <div class="col-7 align-self-center pull-right">
             <div class="d-flex no-block justify-content-end align-items-center">
