@@ -113,7 +113,7 @@
 		                </div>
 		            </div>
 
-
+		            {{-- details --}}
 		            <div class="col-md-12" role="group" aria-label="Button group with nested dropdown">
 		            	<div class="row">
 		            		<div class="col-md-6">
@@ -208,60 +208,60 @@
                         <input type="button" value="Forward" class="btn btn-primary pull-right" style="margin: 15px;" data-toggle="modal" data-target="#forwardModal" data-whatever="@fat" />
                         @if($message->sender != Auth::user()->id) <input type="button" value="Reply" class="btn btn-danger pull-right" style="margin: 15px;" data-toggle="modal" data-target="#replyModal" data-whatever="@mdo" /> @endif
                         <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="exampleModalLabel1">New message</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <form action="{{ route('messages.store','inbox') }}" method="POST">
-                                @csrf
-                                @foreach ($errors->all() as $error)
-                                    <p class="alert alert-danger">{{ $error }}</p>
-                                @endforeach
+		                    <div class="modal-dialog" role="document">
+		                        <div class="modal-content">
+		                            <div class="modal-header">
+		                                <h4 class="modal-title" id="exampleModalLabel1">New message</h4>
+		                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		                            </div>
+		                            <form action="{{ route('messages.store','inbox') }}" method="POST">
+		                                @csrf
+		                                @foreach ($errors->all() as $error)
+		                                    <p class="alert alert-danger">{{ $error }}</p>
+		                                @endforeach
 
-                                @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
-                                <div class="modal-body">
-                                    <input type="hidden" name="sender" value="{{ Auth::user()->id }}">
-                                    <input type="hidden" name="receiver" value="{{ $message->sender }}">
-                                    <input type="hidden" name="status" value="inbox">
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label for="recipient-name" class="control-label">Topic:</label>
-                                                <input type="text" class="form-control" id="recipient-name1" name="title" value="{{ $message->title }}">
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label for="priority">Priority</label>
-                                                <select class="custom-select form-control" name="folder">
-                                                    <option value="normal">Select priority</option>
-                                                    <option value="important">Important</option>
-                                                    <option value="urgent">Urgent</option>
-                                                    <option value="official">Official</option>
-                                                    <option value="unofficial">Unofficial</option>
-                                                    <option value="normal">Normal</option>
-                                                    <option value="">None</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="message-text" class="control-label">Message:</label>
-                                        <textarea class="form-control" id="message-text1" name="message"></textarea>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-primary">Send message</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+		                                @if (session('success'))
+		                                    <div class="alert alert-success">
+		                                        {{ session('success') }}
+		                                    </div>
+		                                @endif
+		                                <div class="modal-body">
+		                                    <input type="hidden" name="sender" value="{{ Auth::user()->id }}">
+		                                    <input type="hidden" name="receiver" value="{{ $message->sender }}">
+		                                    <input type="hidden" name="status" value="inbox">
+		                                    <div class="form-group">
+		                                        <div class="row">
+		                                            <div class="col-md-6">
+		                                                <label for="recipient-name" class="control-label">Topic:</label>
+		                                                <input type="text" class="form-control" id="recipient-name1" name="title" value="{{ $message->title }}">
+		                                            </div>
+		                                            <div class="col-md-6">
+		                                                <label for="priority">Priority</label>
+		                                                <select class="custom-select form-control" name="folder">
+		                                                    <option value="normal">Select priority</option>
+		                                                    <option value="important">Important</option>
+		                                                    <option value="urgent">Urgent</option>
+		                                                    <option value="official">Official</option>
+		                                                    <option value="unofficial">Unofficial</option>
+		                                                    <option value="normal">Normal</option>
+		                                                    <option value="">None</option>
+		                                                </select>
+		                                            </div>
+		                                        </div>
+		                                    </div>
+		                                    <div class="form-group">
+		                                        <label for="message-text" class="control-label">Message:</label>
+		                                        <textarea class="form-control" id="message-text1" name="message"></textarea>
+		                                    </div>
+		                                </div>
+		                                <div class="modal-footer">
+		                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		                                    <button type="submit" class="btn btn-primary">Send message</button>
+		                                </div>
+		                            </form>
+		                        </div>
+		                    </div>
+		                </div>
                 <div class="modal fade" id="forwardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">

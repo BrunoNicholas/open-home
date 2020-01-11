@@ -37,7 +37,7 @@ class PostController extends Controller
     public function create()
     {
         $projects = Project::all();
-        return view('system.posts.create',compact(['projects','']));
+        return view('system.posts.create',compact(['projects']));
     }
 
     /**

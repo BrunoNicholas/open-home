@@ -94,7 +94,6 @@
                             <button type="submit" class="btn btn-rounded btn-success">Add User Role</button>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>
